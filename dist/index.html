@@ -4,11 +4,43 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <link rel="stylesheet" href="datepicker.min.css">
+  <title>Hotel</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <section class="login-view hidden"></section>
+  <section class="main-view">
+    <nav>
+      <img role="button" aria-label="Home Button" class="home-button pointer" id="homeButton" src="./images/hotel-logo.png" tabindex="0">
+      <div class="datepicker"></div>
+      <div class="user-info"></div>
+    </nav>
+    <main>
+      <section class="home-dash-page">
+        <header class="home-header">
+          <h2>Welcome back to the Hotel, <span>user</span>!</h2>
+          <div class="user-rewards"></div>
+        </header>
+        <h3>Upcoming Stays</h3>
+        <div class="upcoming-stay-display"></div>
+        <h3>Past Stays</h3>
+        <div class="past-stay-display"></div>
+      </section>
+      <section class="room-results-page hidden">
+        <form class="filter-rooms-form">
+          <label for="filters" class="off-page">Filter Rooms</label>
+          <select name="filter-recipes" id="filters" class="input-bar filter-select pointer hover">
+              <option id="filterPlaceholder" value="" disabled selected>Filter Rooms</option>
+              <option value="single room">Single Room</option>
+              <option value="suite">Suite</option>
+              <option value="junior suite">Junior Suite</option>
+              <option value="residential suite">Residential Suite</option>
+          </select>
+        </form>
+        <div class="results-display"></div>
+      </section>
+    </main>
+  </section>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
