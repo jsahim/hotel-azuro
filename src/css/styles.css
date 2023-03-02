@@ -126,3 +126,5 @@ option{
 .hidden {
   display: none;
 }
+
+@import '~js-datepicker/dist/datepicker.min.css';
