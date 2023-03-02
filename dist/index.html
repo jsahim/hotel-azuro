@@ -14,9 +14,12 @@
   <section class="login-view hidden"></section>
   <section class="main-view">
     <nav>
-      <div class="home-user">
+      <div class="home-user-section">
         <img role="button" aria-label="Home Button" class="home-button pointer" id="homeButton" src="./images/hotel-logo.png" tabindex="0">
-        <p class="nav-username" id="navNameInsert">Joe Schmo<span id="pointAmount"> |</span></p>
+        <aside class="user-info">
+          <p class="username" id="navNameInsert">Joe Schmo</p>
+          <p class="points" id="pointInsert">0</span>pts.</p>
+        </aside>
       </div>
       <form class="datepicker">
         <label for="calendar">FIND A ROOM</label>
@@ -47,7 +50,14 @@
               <option value="residential suite">Residential Suites</option>
           </select>
         </form>
-        <div class="results-display"></div>
+        <div class="results-display">
+          <article class="room-option"></article>
+          <article class="room-option"></article>
+          <article class="room-option"></article>
+          <article class="room-option"></article>
+          <article class="room-option"></article>
+          <article class="room-option"></article>
+        </div>
       </section>
     </main>
   </section>
