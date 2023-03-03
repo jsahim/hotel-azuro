@@ -22,12 +22,12 @@
       </div>
       <form class="datepicker">
         <label for="calendar">FIND A ROOM</label>
-        <input type="date" id="calendar" value=""2017-06-01"">
+        <input type="date" id="calendar" value="">
         <input type="submit" id="dateSubmit" value="Search">
       </form>
     </nav>
     <main>
-      <section class="home-dash-page hidden">
+      <section class="home-dash-page" id="dashboardPage">
         <header class="home-header">
           <h2>Welcome back to the Hotel, <span id="homeNameInsert">user</span>.</h2>
           <div class="user-rewards"></div>
@@ -37,7 +37,7 @@
         <h3>Past Stays</h3>
         <div class="past-stay-display"></div>
       </section>
-      <section class="room-results-page">
+      <section class="room-results-page hidden" id="resultsPage">
         <h2><span id="roomTypeInsert">Choose a Room</h2>
         <form class="filter-rooms-form">
           <label for="filters" class="off-page">Filter Rooms</label>
