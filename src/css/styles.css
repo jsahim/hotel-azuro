@@ -70,6 +70,9 @@ main {
 
 .home-dash-page, .room-results-page {
   margin-top: 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .home-header{

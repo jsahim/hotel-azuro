@@ -1,5 +1,6 @@
 import './css/styles.css';
 import apiObject from '../apiCalls';
+
 import datepicker from 'js-datepicker';
 import './images/hotel-logo.png';
 
@@ -29,7 +30,6 @@ datepicker(calendar, {
     yearStr = date.toString().split(" ")[3];
     const formattedDate = `${yearStr}-${monthStr}-${dayStr}`;
     calendar.value = formattedDate
-    console.log(calendar.value)
   }
 })
 
