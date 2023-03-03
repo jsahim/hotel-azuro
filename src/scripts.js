@@ -1,4 +1,5 @@
 import './css/styles.css';
+import apiObject from '../apiCalls';
 import datepicker from 'js-datepicker';
 import './images/hotel-logo.png';
 
@@ -7,6 +8,14 @@ const dateSubmitButton = document.getElementById("dateSubmit")
 const dashboardPage = document.getElementById("dashboardPage") 
 const resultsPage = document.getElementById("resultsPage") 
 const homeButton = document.getElementById("homeButton") 
+let bookingData, roomData, customerData
+
+dateSubmitButton.addEventListener("click", displayRooms)
+homeButton.addEventListener("click", gohome)
+
+
+//functions
+
 datepicker(calendar, {
   formatter: (calendar, date) => {
     let monthStr, dayStr, yearStr
@@ -18,11 +27,18 @@ datepicker(calendar, {
   }
 })
 
-dateSubmitButton.addEventListener("click", displayRooms)
-homeButton.addEventListener("click", gohome)
+apiObject.getAllPromises().then(data => {
+  bookingData = data[0].bookings;
+  roomData = data[1].rooms;
+  customerData = data[2].customers;
+});
 
 function toggleView(element, action){
-action === "hide" ? element.classList.add("hidden") : element.classList.remove("hidden")
+  if (action === "hide"){
+    element.classList.add("hidden") 
+  } else {
+    element.classList.remove("hidden")
+  }
 }
 
 function gohome(){
