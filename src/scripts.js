@@ -1,6 +1,8 @@
 import './css/styles.css';
 import apiObject from '../apiCalls';
-
+import Booking from './classes/Booking';
+import Room from './classes/Room';
+import Customer from './classes/Customer';
 import datepicker from 'js-datepicker';
 import './images/hotel-logo.png';
 
