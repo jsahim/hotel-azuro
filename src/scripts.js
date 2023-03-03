@@ -1,12 +1,23 @@
-// This is the JavaScript entry file - your code begins here
-
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
 import datepicker from 'js-datepicker';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/hotel-logo.png';
 
-console.log('This is the JavaScript entry file - your code begins here.');
-console.log(datepicker)
+// console.log('This is the JavaScript entry file - your code begins here.');
+const calendar = document.getElementById("calendar") 
+const dateDisplay = document.querySelector('#calendar[type="date"]');
+// const dateSubmitButton = document.getElementById("dateSubmit") 
+
+const picker = datepicker(calendar, {
+  formatter: (calendar, date) => {
+    let monthString = (date.getMonth() + 1).toLocaleString('en-US', {minimumIntegerDigits: 2});
+    let allString = date.toString().split(" ");
+    let formatDate = `${allString[3]}-${monthString}-${allString[2]}`;
+    calendar.value = formatDate 
+  }
+})
+
+picker.formatter(calendar, new Date())
+
+
+
+
