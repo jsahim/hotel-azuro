@@ -2,22 +2,31 @@ import './css/styles.css';
 import datepicker from 'js-datepicker';
 import './images/hotel-logo.png';
 
-// console.log('This is the JavaScript entry file - your code begins here.');
 const calendar = document.getElementById("calendar") 
-const dateDisplay = document.querySelector('#calendar[type="date"]');
-// const dateSubmitButton = document.getElementById("dateSubmit") 
-
+const dateSubmitButton = document.getElementById("dateSubmit") 
+const dashboardPage = document.getElementById("dashboardPage") 
+const resultsPage = document.getElementById("resultsPage") 
 const picker = datepicker(calendar, {
   formatter: (calendar, date) => {
-    let monthString = (date.getMonth() + 1).toLocaleString('en-US', {minimumIntegerDigits: 2});
-    let allString = date.toString().split(" ");
-    let formatDate = `${allString[3]}-${monthString}-${allString[2]}`;
-    calendar.value = formatDate 
+    let monthStr, dayStr, yearStr
+    monthStr = (date.getMonth() + 1).toLocaleString('en-US', {minimumIntegerDigits: 2});
+    dayStr = date.toString().split(" ")[2];
+    yearStr = date.toString().split(" ")[3];
+    const formattedDate = `${yearStr}-${monthStr}-${dayStr}`;
+    calendar.value = formattedDate
   }
 })
 
-picker.formatter(calendar, new Date())
+dateSubmitButton.addEventListener("click", displayRooms)
 
+function toggleView(element, action){
+action === "hide" ? element.classList.add("hidden") : element.classList.remove("hidden")
+}
 
-
-
+function displayRooms(e){
+  e.preventDefault()
+  if(calendar.value){
+    toggleView(dashboardPage, "hide")
+    toggleView(resultsPage, "show")
+  }
+}
