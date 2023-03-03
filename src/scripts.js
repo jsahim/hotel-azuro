@@ -7,7 +7,7 @@ const dateSubmitButton = document.getElementById("dateSubmit")
 const dashboardPage = document.getElementById("dashboardPage") 
 const resultsPage = document.getElementById("resultsPage") 
 const homeButton = document.getElementById("homeButton") 
-const picker = datepicker(calendar, {
+datepicker(calendar, {
   formatter: (calendar, date) => {
     let monthStr, dayStr, yearStr
     monthStr = (date.getMonth() + 1).toLocaleString('en-US', {minimumIntegerDigits: 2});
