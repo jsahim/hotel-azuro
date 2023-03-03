@@ -122,8 +122,13 @@ option{
   text-align: center;
 }
 
+input::-webkit-calendar-picker-indicator{
+  display: none;
+}
+
 .hidden {
   display: none;
 }
+
 
 @import '~js-datepicker/dist/datepicker.min.css';

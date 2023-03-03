@@ -1,4 +1,5 @@
 import './css/styles.css';
+import apiObject from '../apiCalls';
 import datepicker from 'js-datepicker';
 import './images/hotel-logo.png';
 
@@ -7,6 +8,19 @@ const dateSubmitButton = document.getElementById("dateSubmit")
 const dashboardPage = document.getElementById("dashboardPage") 
 const resultsPage = document.getElementById("resultsPage") 
 const homeButton = document.getElementById("homeButton") 
+let bookingData, roomData, customerData
+
+dateSubmitButton.addEventListener("click", displayRooms)
+homeButton.addEventListener("click", gohome)
+
+
+//functions
+apiObject.getAllPromises().then(data => {
+  bookingData = data[0].bookings;
+  roomData = data[1].rooms;
+  customerData = data[2].customers;
+});
+
 datepicker(calendar, {
   formatter: (calendar, date) => {
     let monthStr, dayStr, yearStr
@@ -15,17 +29,21 @@ datepicker(calendar, {
     yearStr = date.toString().split(" ")[3];
     const formattedDate = `${yearStr}-${monthStr}-${dayStr}`;
     calendar.value = formattedDate
+    console.log(calendar.value)
   }
 })
 
-dateSubmitButton.addEventListener("click", displayRooms)
-homeButton.addEventListener("click", gohome)
-
 function toggleView(element, action){
-action === "hide" ? element.classList.add("hidden") : element.classList.remove("hidden")
+  if (action === "hide"){
+    element.classList.add("hidden") 
+  } else if (action === "show"){
+    element.classList.remove("hidden") 
+  }
 }
 
 function gohome(){
+  scroll(0,0)
+  calendar.value = ""
   toggleView(dashboardPage, "show")
   toggleView(resultsPage, "hide")
 }
@@ -33,6 +51,7 @@ function gohome(){
 function displayRooms(e){
   e.preventDefault()
   if(calendar.value){
+    scroll(0,0)
     toggleView(dashboardPage, "hide")
     toggleView(resultsPage, "show")
   }
