@@ -6,6 +6,7 @@ const calendar = document.getElementById("calendar")
 const dateSubmitButton = document.getElementById("dateSubmit") 
 const dashboardPage = document.getElementById("dashboardPage") 
 const resultsPage = document.getElementById("resultsPage") 
+const homeButton = document.getElementById("homeButton") 
 const picker = datepicker(calendar, {
   formatter: (calendar, date) => {
     let monthStr, dayStr, yearStr
@@ -18,9 +19,15 @@ const picker = datepicker(calendar, {
 })
 
 dateSubmitButton.addEventListener("click", displayRooms)
+homeButton.addEventListener("click", gohome)
 
 function toggleView(element, action){
 action === "hide" ? element.classList.add("hidden") : element.classList.remove("hidden")
+}
+
+function gohome(){
+  toggleView(dashboardPage, "show")
+  toggleView(resultsPage, "hide")
 }
 
 function displayRooms(e){
