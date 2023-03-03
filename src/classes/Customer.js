@@ -1,7 +1,11 @@
 class Customer {
-  constructor(){
-
+  constructor(userObj){
+    this.id = userObj.id
+    this.name = userObj.name
+    this.username = `customer${this.id}`
+    this.password = "overlook2021"
+    this.totalSpent = 0
   }
 }
 
-export default Customer;
+export default Customer

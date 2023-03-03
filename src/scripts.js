@@ -1,8 +1,6 @@
 import './css/styles.css';
 import apiObject from '../apiCalls';
-import Booking from './classes/Booking';
-import Room from './classes/Room';
-import Customer from './classes/Customer';
+import Database from './classes/Database';
 import datepicker from 'js-datepicker';
 import './images/hotel-logo.png';
 
@@ -11,7 +9,7 @@ const dateSubmitButton = document.getElementById("dateSubmit")
 const dashboardPage = document.getElementById("dashboardPage") 
 const resultsPage = document.getElementById("resultsPage") 
 const homeButton = document.getElementById("homeButton") 
-let bookingData, roomData, customerData
+let hotelDatabase
 
 dateSubmitButton.addEventListener("click", displayRooms)
 homeButton.addEventListener("click", gohome)
@@ -19,10 +17,13 @@ homeButton.addEventListener("click", gohome)
 
 //functions
 apiObject.getAllPromises().then(data => {
-  bookingData = data[0].bookings;
-  roomData = data[1].rooms;
-  customerData = data[2].customers;
+  let bookingData = data[0].bookings;
+  let roomsData = data[1].rooms;
+  let customersData = data[2].customers;
+  hotelDatabase = new Database(bookingData, roomsData, customersData)
+  console.log(hotelDatabase)
 });
+
 
 datepicker(calendar, {
   formatter: (calendar, date) => {
