@@ -15,6 +15,11 @@ homeButton.addEventListener("click", gohome)
 
 
 //functions
+apiObject.getAllPromises().then(data => {
+  bookingData = data[0].bookings;
+  roomData = data[1].rooms;
+  customerData = data[2].customers;
+});
 
 datepicker(calendar, {
   formatter: (calendar, date) => {
@@ -24,24 +29,21 @@ datepicker(calendar, {
     yearStr = date.toString().split(" ")[3];
     const formattedDate = `${yearStr}-${monthStr}-${dayStr}`;
     calendar.value = formattedDate
+    console.log(calendar.value)
   }
 })
-
-apiObject.getAllPromises().then(data => {
-  bookingData = data[0].bookings;
-  roomData = data[1].rooms;
-  customerData = data[2].customers;
-});
 
 function toggleView(element, action){
   if (action === "hide"){
     element.classList.add("hidden") 
-  } else {
-    element.classList.remove("hidden")
+  } else if (action === "show"){
+    element.classList.remove("hidden") 
   }
 }
 
 function gohome(){
+  scroll(0,0)
+  calendar.value = ""
   toggleView(dashboardPage, "show")
   toggleView(resultsPage, "hide")
 }
@@ -49,6 +51,7 @@ function gohome(){
 function displayRooms(e){
   e.preventDefault()
   if(calendar.value){
+    scroll(0,0)
     toggleView(dashboardPage, "hide")
     toggleView(resultsPage, "show")
   }
