@@ -2,23 +2,22 @@ import './css/styles.css';
 import apiObject from '../apiCalls';
 import Database from './classes/Database';
 import datepicker from 'js-datepicker';
-import './images/hotel-logo.png';
-import './images/residential-suite.png';
-import './images/suite.png';
-import './images/single-room.png';
-import './images/junior-suite.png';
+// import './images/residential-suite.png';
+// import './images/suite.png';
+// import './images/single-room.png';
+// import './images/junior-suite.png';
 
 const calendar = document.getElementById("calendar") 
 const dateSubmitButton = document.getElementById("dateSubmit") 
 const dashboardPage = document.getElementById("dashboardPage") 
+const filterBar = document.getElementById("filters")
 const resultsPage = document.getElementById("resultsPage") 
 const homeButton = document.getElementById("homeButton") 
 const resultsDisplay = document.getElementById("resultsDisplay") 
 let bookingData, roomsData, customersData, hotelDatabase
 
-dateSubmitButton.addEventListener("click", showRoomsPage)
 homeButton.addEventListener("click", goHome)
-
+dateSubmitButton.addEventListener("click", showRoomsPage)
 
 //functions
 apiObject.getAllPromises()
@@ -63,13 +62,17 @@ function showRoomsPage(e){
     scroll(0,0)
     toggleView(dashboardPage, "hide")
     toggleView(resultsPage, "show")
-    displayRooms()
+    filterBar.addEventListener("change", function() { 
+      displayRooms(hotelDatabase.filterRooms(this.value))
+    })
   }
 }
 
-function displayRooms(){
+function displayRooms(matchRooms){
+  console.log(matchRooms)
   resultsDisplay.innerHTML = ""
-  hotelDatabase.rooms.forEach(room => {
+  document.getElementById("roomTypeInsert").innerText = `Available ${matchRooms[0].formatType()}`
+  matchRooms.forEach(room => {
     resultsDisplay.innerHTML += 
     `<article class="room-option" id="room${room.number}">
       <img src="${room.createImagePath()}" class"room-image" alt="${room.type} image">
