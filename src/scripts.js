@@ -3,15 +3,20 @@ import apiObject from '../apiCalls';
 import Database from './classes/Database';
 import datepicker from 'js-datepicker';
 import './images/hotel-logo.png';
+import './images/residential-suite.png';
+import './images/suite.png';
+import './images/single-room.png';
+import './images/junior-suite.png';
 
 const calendar = document.getElementById("calendar") 
 const dateSubmitButton = document.getElementById("dateSubmit") 
 const dashboardPage = document.getElementById("dashboardPage") 
 const resultsPage = document.getElementById("resultsPage") 
 const homeButton = document.getElementById("homeButton") 
+const resultsDisplay = document.getElementById("resultsDisplay") 
 let bookingData, roomsData, customersData, hotelDatabase
 
-dateSubmitButton.addEventListener("click", displayRooms)
+dateSubmitButton.addEventListener("click", showRoomsPage)
 homeButton.addEventListener("click", goHome)
 
 
@@ -52,11 +57,30 @@ function goHome(){
   toggleView(resultsPage, "hide")
 }
 
-function displayRooms(e){
+function showRoomsPage(e){
   e.preventDefault()
   if(calendar.value){
     scroll(0,0)
     toggleView(dashboardPage, "hide")
     toggleView(resultsPage, "show")
+    displayRooms()
   }
+}
+
+function displayRooms(){
+  resultsDisplay.innerHTML = ""
+  hotelDatabase.rooms.forEach(room => {
+    resultsDisplay.innerHTML += 
+    `<article class="room-option" id="room${room.number}">
+      <img src="${room.createImagePath()}" class"room-image" alt="${room.type} image">
+      <div class"room-description">
+        <h3>${room.formatType()}</h3>
+        <p>${room.numBeds} ${room.formatBedSize()} Beds</p>
+      </div>
+      <div class"book-details">
+        <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>
+        <button>BOOK NOW</button>
+      </div>
+    </article>`
+  })
 }
