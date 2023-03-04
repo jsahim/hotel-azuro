@@ -9,17 +9,18 @@ const dateSubmitButton = document.getElementById("dateSubmit")
 const dashboardPage = document.getElementById("dashboardPage") 
 const resultsPage = document.getElementById("resultsPage") 
 const homeButton = document.getElementById("homeButton") 
-let hotelDatabase
+let bookingData, roomsData, customersData, hotelDatabase
 
 dateSubmitButton.addEventListener("click", displayRooms)
-homeButton.addEventListener("click", gohome)
+homeButton.addEventListener("click", goHome)
 
 
 //functions
-apiObject.getAllPromises().then(data => {
-  let bookingData = data[0].bookings;
-  let roomsData = data[1].rooms;
-  let customersData = data[2].customers;
+apiObject.getAllPromises()
+.then(data => {
+  bookingData = data[0].bookings;
+  roomsData = data[1].rooms;
+  customersData = data[2].customers;
   hotelDatabase = new Database(bookingData, roomsData, customersData)
   console.log(hotelDatabase)
 });
@@ -44,7 +45,7 @@ function toggleView(element, action){
   }
 }
 
-function gohome(){
+function goHome(){
   scroll(0,0)
   calendar.value = ""
   toggleView(dashboardPage, "show")
