@@ -18,6 +18,9 @@ let bookingData, roomsData, customersData, hotelDatabase
 
 homeButton.addEventListener("click", goHome)
 dateSubmitButton.addEventListener("click", showRoomsPage)
+filterBar.addEventListener("change", function() { 
+  displayRooms(hotelDatabase.filterRoomType(this.value))
+})
 
 //functions
 apiObject.getAllPromises()
@@ -62,16 +65,16 @@ function showRoomsPage(e){
     scroll(0,0)
     toggleView(dashboardPage, "hide")
     toggleView(resultsPage, "show")
-    filterBar.addEventListener("change", function() { 
-      displayRooms(hotelDatabase.filterRooms(this.value))
-    })
+    filterBar.value = "all rooms"
+    let databaseDate = calendar.value.replaceAll("-","/")
+    displayRooms(hotelDatabase.filterRoomDate(databaseDate))
   }
 }
 
 function displayRooms(matchRooms){
-  console.log(matchRooms)
+  console.log("matchrooms", matchRooms)
   resultsDisplay.innerHTML = ""
-  document.getElementById("roomTypeInsert").innerText = `Available ${matchRooms[0].formatType()}`
+  document.getElementById("roomTypeInsert").innerText = 'AVAILABLE ROOMS'
   matchRooms.forEach(room => {
     resultsDisplay.innerHTML += 
     `<article class="room-option" id="room${room.number}">
