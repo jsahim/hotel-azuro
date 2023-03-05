@@ -7,19 +7,30 @@ import './images/suite.png';
 import './images/single-room.png';
 import './images/junior-suite.png';
 
+const loginView = document.getElementById("loginView") 
+const primeView = document.getElementById("primeView") 
+const userField = document.getElementById("userField") 
+const passwordField = document.getElementById("passwordField") 
+const loginButton = document.getElementById("loginButton") 
 const calendar = document.getElementById("calendar") 
 const dateSubmitButton = document.getElementById("dateSubmit") 
+const homeButton = document.getElementById("homeButton") 
+const resultsContainer = document.getElementById('resultsDisplay');
 const dashboardPage = document.getElementById("dashboardPage") 
 const filterBar = document.getElementById("filters")
 const resultsPage = document.getElementById("resultsPage") 
-const homeButton = document.getElementById("homeButton") 
 const resultsDisplay = document.getElementById("resultsDisplay") 
-let bookingData, roomsData, customersData, hotelDatabase
+let bookingData, roomsData, customersData, hotelDatabase, currentUser
 
+loginButton.addEventListener("click", verifyLogin)
 homeButton.addEventListener("click", goHome)
 dateSubmitButton.addEventListener("click", showRoomsPage)
 filterBar.addEventListener("change", function() { 
   displayRooms(hotelDatabase.filterRoomType(this.value))
+})
+resultsContainer.addEventListener('click', (e) => {
+  const isButton = e.target.nodeName === 'BUTTON';
+  isButton ? createNewBooking(e.target.id, calendar.value, currentUser) : null
 })
 
 //functions
@@ -51,6 +62,25 @@ function toggleView(element, action){
     element.classList.remove("hidden") 
   }
 }
+
+function verifyLogin(e){
+  e.preventDefault()
+  const foundUser = hotelDatabase.customers.find(cust => {
+    return cust.username === userField.value && cust.password === passwordField.value
+  })
+  if(foundUser){
+    currentUser = foundUser
+    toggleView(loginView, "hide")
+    toggleView(primeView, "show")
+    displayUserDetails(foundUser)
+  }
+}
+
+function displayUserDetails(user){
+  // document.getElementById("navNameInsert") = currentUser.name
+  // document.getElementById("pointInsert") = currentUser.totalSpent
+}
+
 
 function goHome(){
   scroll(0,0)
@@ -84,11 +114,19 @@ function displayRooms(matchRooms){
         </div>
         <div class"book-details">
           <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>
-          <button>BOOK NOW</button>
+          <button class="book-button" id="bookButton${room.number}">BOOK NOW</button>
         </div>
       </article>`
     })
   } else {
     resultsDisplay.innerHTML = "<p>NO ROOMS</p>"
   }
+}
+
+function createNewBooking(buttonID, dateSelect, currentUser) {
+  let roomNum = +(buttonID.split("n")[1])
+  let dateFix = dateSelect.replaceAll("-","/")
+  console.log(roomNum, dateFix, currentUser.id)
+  apiObject.apiRequest("bookings","POST", currentUser.id, dateFix, roomNum);
+  // apiObject.apiRequest("users").then(data => currentUser.recipesToCook = data.users.find(user => user.id === currentUser.id).recipesToCook);
 }

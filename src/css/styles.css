@@ -1,5 +1,4 @@
 body {
-  padding-top: 15vmin;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
 }
@@ -10,6 +9,16 @@ body {
 
 h2, h3 {
   font-family: 'Limelight', cursive;
+}
+
+.login-view {
+  height: 100vh;
+  background-color: #caaa5b;
+}
+
+.prime-view {
+  height: 100vh;
+  padding-top: 15vmin;
 }
 
 nav {
@@ -27,7 +36,6 @@ nav {
 }
 
 main {
-  height: 100vh;
   display: flex;
   justify-content: center;
 }

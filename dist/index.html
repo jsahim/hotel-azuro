@@ -10,14 +10,22 @@
   <title>Hotel Azuro</title>
 </head>
 <body>
-  <section class="login-view hidden"></section>
-  <section class="main-view">
+  <section class="login-view" id="loginView">
+    <form class="login-form" method="post">
+      <label for="username">Username:</label><br>
+      <input type="text" id="userField" name="username" value="" required><br>
+      <label for="password">Password:</label><br>
+      <input type="text" id="passwordField" name="password" value="" required><br><br>
+      <input type="submit" id="loginButton" value="Login">
+    </form>     
+  </section>
+  <section class="prime-view hidden" id="primeView">
     <nav>
       <div class="home-user-section">
         <img role="button" aria-label="Home Button" class="home-button pointer" id="homeButton" src="./images/hotel-logo.png" tabindex="0">
         <aside class="user-info">
-          <p class="username" id="navNameInsert">Joe Schmo</p>
-          <p class="points" id="pointInsert">0</span>pts.</p>
+          <p class="username" id="navNameInsert"></p>
+          <p class="points" id="pointInsert"></span>pts.</p>
         </aside>
       </div>
       <form class="datepicker">

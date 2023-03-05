@@ -5,9 +5,6 @@ class Booking {
     this.date = bookingObj.date
     this.roomNumber = bookingObj.roomNumber
   }
-  formatDate(){
-    return this.date.replaceAll("/" ,"-")
-  }
 }
 
 export default Booking
