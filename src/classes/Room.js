@@ -18,7 +18,7 @@ class Room {
     return this.costPerNight.toFixed(2).toString()
   }
   createImagePath(){
-    return `${this.type.replace(" ", "-")}.png`
+   return `./images/${this.type.replace(" ", "-")}.png`
   }
 }
 

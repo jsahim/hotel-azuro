@@ -2,10 +2,10 @@ import './css/styles.css';
 import apiObject from '../apiCalls';
 import Database from './classes/Database';
 import datepicker from 'js-datepicker';
-// import './images/residential-suite.png';
-// import './images/suite.png';
-// import './images/single-room.png';
-// import './images/junior-suite.png';
+import './images/residential-suite.png';
+import './images/suite.png';
+import './images/single-room.png';
+import './images/junior-suite.png';
 
 const calendar = document.getElementById("calendar") 
 const dateSubmitButton = document.getElementById("dateSubmit") 
@@ -29,7 +29,7 @@ apiObject.getAllPromises()
   roomsData = data[1].rooms;
   customersData = data[2].customers;
   hotelDatabase = new Database(bookingData, roomsData, customersData)
-  console.log(hotelDatabase)
+  console.log(hotelDatabase);
 });
 
 
@@ -72,21 +72,23 @@ function showRoomsPage(e){
 }
 
 function displayRooms(matchRooms){
-  console.log("matchrooms", matchRooms)
   resultsDisplay.innerHTML = ""
-  document.getElementById("roomTypeInsert").innerText = 'AVAILABLE ROOMS'
-  matchRooms.forEach(room => {
-    resultsDisplay.innerHTML += 
-    `<article class="room-option" id="room${room.number}">
-      <img src="${room.createImagePath()}" class"room-image" alt="${room.type} image">
-      <div class"room-description">
-        <h3>${room.formatType()}</h3>
-        <p>${room.numBeds} ${room.formatBedSize()} Beds</p>
-      </div>
-      <div class"book-details">
-        <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>
-        <button>BOOK NOW</button>
-      </div>
-    </article>`
-  })
+  if(matchRooms.length > 0){
+    matchRooms.forEach(room => {
+      resultsDisplay.innerHTML += 
+      `<article class="room-option" id="room${room.number}">
+        <img class"room-image" src="${room.createImagePath()}" alt="${room.type} image">
+        <div class"room-description">
+          <h3>${room.formatType()}</h3>
+          <p>${room.numBeds} ${room.formatBedSize()} Beds</p>
+        </div>
+        <div class"book-details">
+          <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>
+          <button>BOOK NOW</button>
+        </div>
+      </article>`
+    })
+  } else {
+    resultsDisplay.innerHTML = "<p>NO ROOMS</p>"
+  }
 }

@@ -27,7 +27,6 @@ nav {
 }
 
 main {
-  margin-top: 0%;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -60,8 +59,35 @@ main {
   font-size: large;
 }
 
+.date-select {
+  font-size: large;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  border: 2px white solid;
+  border-radius: 2px;
+}
+
+.date-submit {
+  font-size: small;
+  height: 28px;
+  color: white;
+  border: 2px white solid;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #003366;
+  margin-left: 1%;
+  border-radius: 2px;
+
+}
+
+.date-submit:hover {
+  color: #003366;
+  background-color: white;
+  border-color: white;
+}
+
 .user-info{
   display: flex;
+  flex-direction: column;
   border: 2px blue solid;
   height: 15vmin;
   width: 50vmin;
@@ -69,7 +95,7 @@ main {
 }
 
 .home-dash-page, .room-results-page {
-  margin-top: 6%;
+  margin-top: 7%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,6 +125,16 @@ main {
   width: 80vmin;
 }
 
+.filter-select {
+  font-size: large;
+  margin: 5%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.filter-rooms-label {
+  font-size: large;
+}
+
 .filter-rooms-form {
   display: flex;
   flex-direction: column;
@@ -109,16 +145,21 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px turquoise solid;
 }
 
 .room-option {
   display: flex;
   justify-content: space-between;
-  border: 2px brown solid;
+  border: 2px #caaa5b solid;
   height: 20vmin;
   width: 100vmin;
   margin: 1%;
+  padding: 1%;
+}
+
+.room-option > img {
+  width: 30%;
+  border: 2px #caaa5b solid;
 }
 
 .price-header {
