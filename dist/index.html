@@ -21,9 +21,9 @@
         </aside>
       </div>
       <form class="datepicker">
-        <label for="calendar" class="find-room-text">FIND A ROOM</label>
-        <input type="date" id="calendar" value="">
-        <input type="submit" id="dateSubmit" value="Search">
+        <label for="calendar" class="find-room-text">FIND ROOMS</label>
+        <input type="date" class="date-select" id="calendar" value="">
+        <input type="submit" class="date-submit pointer" id="dateSubmit" value="SEARCH">
       </form>
     </nav>
     <main>
@@ -38,30 +38,22 @@
         <div class="past-stay-display"></div>
       </section>
       <section class="room-results-page hidden" id="resultsPage">
-        <h2><span id="roomTypeInsert">Choose a Room</h2>
+        <h2>AVAILABLE ROOMS</h2>
         <form class="filter-rooms-form">
-          <label for="filters" class="off-page">Filter Rooms</label>
+          <label for="filters" class="filter-rooms-label">Filter Type</label>
           <select name="filter-recipes" id="filters" class="input-bar filter-select pointer hover">
-              <option id="filterPlaceholder" value="all rooms" selected>All Rooms</option>
+              <option id="filterDefault" value="all rooms" selected>All Rooms</option>
               <option value="single room">Single Rooms</option>
               <option value="suite">Suites</option>
               <option value="junior suite">Junior Suites</option>
               <option value="residential suite">Residential Suites</option>
           </select>
         </form>
-        <div class="results-display">
-          <article class="room-option"></article>
-          <article class="room-option"></article>
-          <article class="room-option"></article>
-          <article class="room-option"></article>
-          <article class="room-option"></article>
-          <article class="room-option"></article>
-        </div>
+        <div class="results-display" id="resultsDisplay"></div>
       </section>
     </main>
   </section>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
 </html>
+
