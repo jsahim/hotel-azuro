@@ -3,6 +3,7 @@ import apiObject from '../apiCalls';
 import Database from './classes/Database';
 import Booking from './classes/Booking';
 import datepicker from 'js-datepicker';
+import MicroModal from 'micromodal'; 
 import './images/residential-suite.png';
 import './images/suite.png';
 import './images/single-room.png';
@@ -16,22 +17,27 @@ const loginButton = document.getElementById("loginButton")
 const calendar = document.getElementById("calendar") 
 const dateSubmitButton = document.getElementById("dateSubmit") 
 const homeButton = document.getElementById("homeButton") 
+const modalCloseButton = document.getElementById("modalClose") 
 const resultsContainer = document.getElementById('resultsDisplay');
 const dashboardPage = document.getElementById("dashboardPage") 
 const filterBar = document.getElementById("filters")
 const resultsPage = document.getElementById("resultsPage") 
 const resultsDisplay = document.getElementById("resultsDisplay") 
+const body = document.querySelector('body');
 let bookingData, roomsData, customersData, hotelDatabase, currentUser
 
 loginButton.addEventListener("click", verifyLogin)
 homeButton.addEventListener("click", goHome)
 dateSubmitButton.addEventListener("click", showRoomsPage)
+modalCloseButton.addEventListener("click", goHome)
 filterBar.addEventListener("change", function() { 
   displayRooms(hotelDatabase.filterRoomType(this.value))
 })
 resultsContainer.addEventListener('click', (e) => {
   const isButton = e.target.nodeName === 'BUTTON';
   isButton ? createNewBooking(e.target.id, calendar.value, currentUser) : null
+  MicroModal.show('modal');
+  body.classList.add('no-scroll');
 })
 
 //functions
@@ -46,6 +52,7 @@ apiObject.getAllPromises()
 
 
 datepicker(calendar, {
+  minDate: new Date(),
   formatter: (calendar, date) => {
     let monthStr, dayStr, yearStr
     monthStr = (date.getMonth() + 1).toLocaleString('en-US', {minimumIntegerDigits: 2});
@@ -89,12 +96,14 @@ function displayUserDetails(){
   document.getElementById("homeNameInsert").innerText = userInst.getFirstName()
   document.getElementById("pointsAccrued").innerText = userInst.getPointsEarned()
   document.getElementById("moneySpent").innerText = `$${userInst.totalSpend}`
-  userBookings.futureStays.reverse().forEach(fBooking => {
+  document.getElementById("upcomingStayDisplay").innerHTML = ""
+  document.getElementById("pastStayDisplay").innerHTML = ""
+  userBookings.futureStays.forEach(fBooking => {
     dateDetails = hotelDatabase.getDateDetails(fBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(fBooking.roomNumber)
     document.getElementById("upcomingStayDisplay").innerHTML += `<p>${dateDetails} | ${roomDetails}</p>`
   })
-  userBookings.pastStays.reverse().forEach(pBooking => {
+  userBookings.pastStays.forEach(pBooking => {
     dateDetails = hotelDatabase.getDateDetails(pBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(pBooking.roomNumber)
     document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} | ${roomDetails}</p>`
@@ -103,8 +112,10 @@ function displayUserDetails(){
 
 
 function goHome(){
+  body.classList.remove('no-scroll');
   scroll(0,0)
   calendar.value = ""
+  displayUserDetails()
   toggleView(dashboardPage, "show")
   toggleView(resultsPage, "hide")
 }

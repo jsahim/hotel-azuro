@@ -196,9 +196,34 @@ option{
   text-align: center;
 }
 
+.modal {
+  display: none;
+  z-index: 4;
+  position: fixed;
+  background-color: #003366;
+  height: 500px;
+  width: 500px;
+}
+
+.modal:before {
+  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  height: 1000px;
+  width: 1000px;
+  position: fixed;
+  z-index: 10;
+}
+
+.modal.is-open {
+  display: block;
+}
+
 .hidden, input::-webkit-calendar-picker-indicator {
   display: none;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
 
 @import '~js-datepicker/dist/datepicker.min.css';
