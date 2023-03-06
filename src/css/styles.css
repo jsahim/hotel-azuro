@@ -1,6 +1,7 @@
 body {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+  margin: 0%;
 }
 
 .pointer {
@@ -11,13 +12,11 @@ h2, h3 {
   font-family: 'Limelight', cursive;
 }
 
-.login-view {
+.login-view .prime-view {
   height: 100vh;
-  background-color: #caaa5b;
 }
 
 .prime-view {
-  height: 100vh;
   padding-top: 15vmin;
 }
 
@@ -32,7 +31,7 @@ nav {
   right: 0;
   background-color: white;
   box-shadow: 0px 1px 5px #888888;
-  z-index: 3;
+  z-index: 1;
 }
 
 main {
@@ -49,6 +48,18 @@ main {
   width: inherit;
   display: flex;
   justify-content: space-evenly;
+}
+
+.user-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.user-info p {
+  font-size: x-large;
+  margin: 1%;
 }
 
 .upcoming-stay-display, .past-stay-display {
@@ -117,15 +128,16 @@ main {
   flex-direction: column;
   border: 2px blue solid;
   height: 15vmin;
-  width: 50vmin;
+  width: 40vmin;
   margin: 1%;
 }
 
 .home-dash-page, .room-results-page {
-  margin-top: 7%;
+  margin-top: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10vh;
 }
 
 .home-header {
@@ -198,20 +210,19 @@ option{
 
 .modal {
   display: none;
-  z-index: 4;
   position: fixed;
   background-color: #003366;
-  height: 500px;
-  width: 500px;
+  height: 50vmin;
+  width: 50vmin;
+  z-index: 2;
 }
 
 .modal:before {
-  display: none;
   background: rgba(0, 0, 0, 0.6);
   height: 1000px;
   width: 1000px;
   position: fixed;
-  z-index: 10;
+  z-index: 1;
 }
 
 .modal.is-open {

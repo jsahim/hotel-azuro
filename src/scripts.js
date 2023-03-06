@@ -35,9 +35,11 @@ filterBar.addEventListener("change", function() {
 })
 resultsContainer.addEventListener('click', (e) => {
   const isButton = e.target.nodeName === 'BUTTON';
-  isButton ? createNewBooking(e.target.id, calendar.value, currentUser) : null
-  MicroModal.show('modal');
-  body.classList.add('no-scroll');
+  if(isButton){
+    createNewBooking(e.target.id, calendar.value, currentUser)
+    MicroModal.show('modal');
+    body.classList.add('no-scroll');
+  } 
 })
 
 //functions
@@ -88,14 +90,18 @@ function displayUserDetails(){
   let userInst = hotelDatabase.customers.find(customer => customer.id === currentUser.id)
   userInst.allBookings = hotelDatabase.bookings.filter(booking => booking.userID === userInst.id)
   userInst.getTotalSpent(hotelDatabase.rooms)
-  let userBookings = userInst.sortBookings()
-  console.log(userBookings)
-  let dateDetails, roomDetails
   document.getElementById("navNameInsert").innerText = userInst.name
-  document.getElementById("pointInsert").innerText = userInst.getPointsEarned()
+  document.getElementById("pointInsert").innerText = `${userInst.getPointsEarned()} points`
   document.getElementById("homeNameInsert").innerText = userInst.getFirstName()
   document.getElementById("pointsAccrued").innerText = userInst.getPointsEarned()
+  document.getElementById("memberLevel").innerText = userInst.getMemberLevel()
   document.getElementById("moneySpent").innerText = `$${userInst.totalSpend}`
+  displayUserBookings(userInst)
+}
+
+function displayUserBookings(userInst){
+  let userBookings = userInst.sortBookings()
+  let dateDetails, roomDetails
   document.getElementById("upcomingStayDisplay").innerHTML = ""
   document.getElementById("pastStayDisplay").innerHTML = ""
   userBookings.futureStays.forEach(fBooking => {
@@ -109,7 +115,6 @@ function displayUserDetails(){
     document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} | ${roomDetails}</p>`
   })
 }
-
 
 function goHome(){
   body.classList.remove('no-scroll');
@@ -160,5 +165,7 @@ function createNewBooking(buttonID, dateSelect, currentUser) {
   let roomNum = +(buttonID.split("n")[1])
   let dateFix = dateSelect.replaceAll("-","/")
   apiObject.apiRequest("bookings","POST", currentUser.id, dateFix, roomNum);
-  apiObject.apiRequest("bookings").then(bookData => hotelDatabase.bookings = bookData.bookings.map(bookObj => new Booking(bookObj)));
+  apiObject.apiRequest("bookings").then(bookData => {
+    return hotelDatabase.bookings = bookData.bookings.map(bookObj => new Booking(bookObj))
+  });
 }
