@@ -1,6 +1,7 @@
 import './css/styles.css';
 import apiObject from '../apiCalls';
 import Database from './classes/Database';
+import Booking from './classes/Booking';
 import datepicker from 'js-datepicker';
 import './images/residential-suite.png';
 import './images/suite.png';
@@ -72,13 +73,20 @@ function verifyLogin(e){
     currentUser = foundUser
     toggleView(loginView, "hide")
     toggleView(primeView, "show")
-    displayUserDetails(foundUser)
+    displayUserDetails()
   }
 }
 
-function displayUserDetails(user){
-  // document.getElementById("navNameInsert") = currentUser.name
-  // document.getElementById("pointInsert") = currentUser.totalSpent
+function displayUserDetails(){
+  let userInst = hotelDatabase.customers.find(customer => customer.id === currentUser.id)
+  userInst.allBookings = hotelDatabase.bookings.filter(booking => booking.userID === userInst.id)
+  userInst.getTotalSpent(hotelDatabase.rooms)
+  let thiiis = userInst.sortBookings()
+  console.log(thiiis)
+  document.getElementById("navNameInsert").innerText = userInst.name
+  document.getElementById("pointInsert").innerText = userInst.getPointsEarned()
+  document.getElementById("homeNameInsert").innerText = userInst.getFirstName()
+
 }
 
 
@@ -103,14 +111,16 @@ function showRoomsPage(e){
 
 function displayRooms(matchRooms){
   resultsDisplay.innerHTML = ""
+  let bedWord 
   if(matchRooms.length > 0){
     matchRooms.forEach(room => {
+      room.numBeds === 1 ? bedWord = "Bed" : bedWord = "Beds"
       resultsDisplay.innerHTML += 
       `<article class="room-option" id="room${room.number}">
         <img class"room-image" src="${room.createImagePath()}" alt="${room.type} image">
         <div class"room-description">
           <h3>${room.formatType()}</h3>
-          <p>${room.numBeds} ${room.formatBedSize()} Beds</p>
+          <p>${room.numBeds} ${room.formatBedSize()} ${bedWord}</p>
         </div>
         <div class"book-details">
           <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>
@@ -119,14 +129,13 @@ function displayRooms(matchRooms){
       </article>`
     })
   } else {
-    resultsDisplay.innerHTML = "<p>NO ROOMS</p>"
+    resultsDisplay.innerHTML = "<p>Our sincerest apologies, but there are no rooms available on the date you selected, please adjust your search.</p>"
   }
 }
 
 function createNewBooking(buttonID, dateSelect, currentUser) {
   let roomNum = +(buttonID.split("n")[1])
   let dateFix = dateSelect.replaceAll("-","/")
-  console.log(roomNum, dateFix, currentUser.id)
   apiObject.apiRequest("bookings","POST", currentUser.id, dateFix, roomNum);
-  // apiObject.apiRequest("users").then(data => currentUser.recipesToCook = data.users.find(user => user.id === currentUser.id).recipesToCook);
+  apiObject.apiRequest("bookings").then(bookData => hotelDatabase.bookings = bookData.bookings.map(bookObj => new Booking(bookObj)));
 }
