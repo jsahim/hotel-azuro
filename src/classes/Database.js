@@ -27,6 +27,21 @@ class Database {
     } 
     return this.availRooms.filter(room => room.type === selectedOption)
   }
+  getDateDetails(date){
+    let monthList = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    let day, month, year, initialDate
+    initialDate = date.split("/")
+    day = +(initialDate[2])
+    month = monthList[(+(initialDate[1])-1)]
+    year = initialDate[0]
+    let formattedDate = `${month} ${day}, ${year}`
+    return formattedDate
+  }
+  getRoomDetails(roomNum){
+    let foundRoom = this.rooms.find(room => room.number === roomNum)
+    let formattedDate = `${foundRoom.type}${foundRoom.numBeds}-${foundRoom.bedSize}`
+    return formattedDate
+  }
 }
 
 export default Database

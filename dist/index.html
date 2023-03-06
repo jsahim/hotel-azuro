@@ -13,9 +13,9 @@
   <section class="login-view" id="loginView">
     <form class="login-form" method="post">
       <label for="username">Username:</label><br>
-      <input type="text" id="userField" name="username" value="" required><br>
+      <input type="text" id="userField" name="username" required value=""><br>
       <label for="password">Password:</label><br>
-      <input type="text" id="passwordField" name="password" value="" required><br><br>
+      <input type="text" id="passwordField" name="password" required value=""><br><br>
       <input type="submit" id="loginButton" value="Login">
     </form>     
   </section>
@@ -39,12 +39,21 @@
       <section class="home-dash-page" id="dashboardPage">
         <header class="home-header">
           <h2>Welcome back to the Hotel Azuro, <span id="homeNameInsert"></span>.</h2>
-          <div class="user-rewards"></div>
+          <div class="user-spend-rewards">
+            <div class="user-rewards" id="userRewards">
+              <p class="points-accrued" id="pointsAccrued"></p>
+              <p>Rewards Points</p>
+            </div>
+            <div class="user-spend">
+              <p class="money-spent" id="moneySpent"></p>
+              <p>Lifetime Spend</p>
+            </div>
+          </div>
         </header>
         <h3>Upcoming Stays</h3>
-        <div class="upcoming-stay-display"></div>
+        <div class="upcoming-stay-display" id="upcomingStayDisplay"></div>
         <h3>Past Stays</h3>
-        <div class="past-stay-display"></div>
+        <div class="past-stay-display" id="pastStayDisplay"></div>
       </section>
       <section class="room-results-page hidden" id="resultsPage">
         <h2>AVAILABLE ROOMS</h2>

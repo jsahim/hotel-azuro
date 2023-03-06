@@ -81,12 +81,24 @@ function displayUserDetails(){
   let userInst = hotelDatabase.customers.find(customer => customer.id === currentUser.id)
   userInst.allBookings = hotelDatabase.bookings.filter(booking => booking.userID === userInst.id)
   userInst.getTotalSpent(hotelDatabase.rooms)
-  let thiiis = userInst.sortBookings()
-  console.log(thiiis)
+  let userBookings = userInst.sortBookings()
+  console.log(userBookings)
+  let dateDetails, roomDetails
   document.getElementById("navNameInsert").innerText = userInst.name
   document.getElementById("pointInsert").innerText = userInst.getPointsEarned()
   document.getElementById("homeNameInsert").innerText = userInst.getFirstName()
-
+  document.getElementById("pointsAccrued").innerText = userInst.getPointsEarned()
+  document.getElementById("moneySpent").innerText = `$${userInst.totalSpend}`
+  userBookings.futureStays.reverse().forEach(fBooking => {
+    dateDetails = hotelDatabase.getDateDetails(fBooking.date)
+    roomDetails = hotelDatabase.getRoomDetails(fBooking.roomNumber)
+    document.getElementById("upcomingStayDisplay").innerHTML += `<p>${dateDetails} | ${roomDetails}</p>`
+  })
+  userBookings.pastStays.reverse().forEach(pBooking => {
+    dateDetails = hotelDatabase.getDateDetails(pBooking.date)
+    roomDetails = hotelDatabase.getRoomDetails(pBooking.roomNumber)
+    document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} | ${roomDetails}</p>`
+  })
 }
 
 
