@@ -13,7 +13,7 @@ h2, h3 {
 }
 
 h2 {
-  font-size: xx-large;
+  font-size: 4rem;
   margin-bottom: 5%;
 }
 
@@ -25,8 +25,44 @@ h3 {
   height: 100vh;
 }
 
+.login-view {
+  display: flex;
+  justify-content: space-between;
+  background-color: #caaa5b;
+  position: fixed;
+}
+
 .prime-view {
   padding-top: 3%;
+}
+
+.hotel-image {
+  width: 50%;
+  border-left: #e6e6e6 5px solid;
+}
+
+.login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.login-form > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 25%;
+  width: 25%;
+  background-color: #e6e6e6;
+  padding: 10vmin;
+  margin-bottom: 35%;
+}
+
+.login-form > div > img {
+  width: 100%;
+  margin-bottom: 10%;
 }
 
 .icon{
@@ -88,7 +124,7 @@ main {
 
 .user-spend-rewards {
   display: flex;
-  border: 2px pink solid;
+  border: 2px #caaa5b solid;
   height: 20vmin;
   width: 50vmin;
 }
@@ -102,7 +138,8 @@ main {
 }
 
 .user-spend {
-  border-left: 2px pink solid;
+  border-left: 2px #caaa5b solid;
+  border-radius: 5px;
 }
 
 .money-spent, .points-accrued {
@@ -154,14 +191,14 @@ main {
 .user-info{
   display: flex;
   flex-direction: column;
-  border: 2px blue solid;
+  border: 2px #003366 solid;
   height: 15vmin;
   width: 40vmin;
   margin: 1%;
 }
 
 .home-dash-page, .room-results-page {
-  margin-top: 30vh;
+  margin-top: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -175,13 +212,13 @@ main {
 }
 
 .upcoming-stay-display {
-  border: 2px red solid;
+  border: 2px #003366 solid;
   height: 20vmin;
   width: 80vmin;
 }
 
 .past-stay-display {
-  border: 2px green solid;
+  border: 2px #003366 solid;
   height: 20vmin;
   width: 80vmin;
 }
@@ -237,10 +274,6 @@ option{
   text-align: center;
 }
 
-.modal {
-  font-family: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
-}
-
 .modal__overlay {
   position: fixed;
   top: 0;
@@ -251,6 +284,7 @@ option{
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 3;
 }
 
 .modal__container {
@@ -287,6 +321,9 @@ option{
 .modal__header .modal__close:before { content: "\2715"; }
 
 .modal__content {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
   margin-top: 2rem;
   margin-bottom: 2rem;
   line-height: 1.5;
@@ -305,7 +342,6 @@ option{
   border-style: none;
   border-width: 0;
   cursor: pointer;
-  -webkit-appearance: button;
   text-transform: none;
   overflow: visible;
   line-height: 1.15;

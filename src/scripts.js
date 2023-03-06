@@ -4,6 +4,8 @@ import Database from './classes/Database';
 import Booking from './classes/Booking';
 import datepicker from 'js-datepicker';
 import MicroModal from 'micromodal'; 
+import './images/hotel-logo.png';
+import './images/hotel-image.png';
 import './images/residential-suite.png';
 import './images/suite.png';
 import './images/single-room.png';
@@ -45,8 +47,9 @@ resultsContainer.addEventListener('click', (e) => {
   const isButton = e.target.nodeName === 'BUTTON';
   if(isButton){
     createNewBooking(e.target.id, calendar.value, currentUser)
-    MicroModal.show('modal-1');
-    body.classList.add('no-scroll');
+    setTimeout(() => {
+      createConfirmation(e.target.id, calendar.value)
+    }, 500);
   } 
 })
 
@@ -181,6 +184,22 @@ function createNewBooking(buttonID, dateSelect, currentUser) {
   let dateFix = dateSelect.replaceAll("-","/")
   apiObject.apiRequest("bookings","POST", currentUser.id, dateFix, roomNum);
   apiObject.apiRequest("bookings").then(bookData => {
-    return hotelDatabase.bookings = bookData.bookings.map(bookObj => new Booking(bookObj))
+    hotelDatabase.bookings = bookData.bookings.map(bookObj => new Booking(bookObj))
+    return hotelDatabase.bookings 
   });
+}
+
+function createConfirmation(buttonID, dateSelect){
+  let roomNum = +(buttonID.split("n")[1])
+  console.log(roomNum)
+  let dateString = dateSelect.replaceAll("-", "/")
+  let book = hotelDatabase.bookings.find(book => book.date === dateString && book.roomNumber === roomNum)
+  let foundRoom = hotelDatabase.rooms.find(rm => rm.number === roomNum)
+  console.log(book, foundRoom)
+  document.getElementById("confDate").innerText = ` ${dateString}`
+  document.getElementById("confRoom").innerText = ` ${foundRoom.type}`
+  document.getElementById("confBeds").innerText = ` ${foundRoom.bedSize}-${foundRoom.numBeds}`
+  document.getElementById("confCode").innerText = ` ${book.code}`
+  body.classList.add('no-scroll');
+  MicroModal.show('modal-1');
 }
