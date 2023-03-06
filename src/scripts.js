@@ -23,7 +23,7 @@ const loginButton = document.getElementById("loginButton")
 const calendar = document.getElementById("calendar") 
 const dateSubmitButton = document.getElementById("dateSubmit") 
 const homeButton = document.getElementById("homeButton") 
-const modalCloseButton = document.getElementById("modalClose") 
+const modal = document.getElementById("modal-1") 
 const resultsContainer = document.getElementById('resultsDisplay');
 const dashboardPage = document.getElementById("dashboardPage") 
 const filterBar = document.getElementById("filters")
@@ -32,10 +32,12 @@ const resultsDisplay = document.getElementById("resultsDisplay")
 const body = document.querySelector('body');
 let bookingData, roomsData, customersData, hotelDatabase, currentUser
 
+
+body.addEventListener('keydown', (e) => e.key === "Escape" && modal.classList.contains("is-open") ? goHome() : null)
 loginButton.addEventListener("click", verifyLogin)
 homeButton.addEventListener("click", goHome)
 dateSubmitButton.addEventListener("click", showRoomsPage)
-modalCloseButton.addEventListener("click", goHome)
+modal.addEventListener("click", goHome)
 filterBar.addEventListener("change", function() { 
   displayRooms(hotelDatabase.filterRoomType(this.value))
 })
@@ -43,10 +45,11 @@ resultsContainer.addEventListener('click', (e) => {
   const isButton = e.target.nodeName === 'BUTTON';
   if(isButton){
     createNewBooking(e.target.id, calendar.value, currentUser)
-    MicroModal.show('modal');
+    MicroModal.show('modal-1');
     body.classList.add('no-scroll');
   } 
 })
+
 
 //functions
 apiObject.getAllPromises()
@@ -113,12 +116,12 @@ function displayUserBookings(userInst){
   userBookings.futureStays.forEach(fBooking => {
     dateDetails = hotelDatabase.getDateDetails(fBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(fBooking.roomNumber)
-    document.getElementById("upcomingStayDisplay").innerHTML += `<p>${dateDetails} | ${roomDetails}</p>`
+    document.getElementById("upcomingStayDisplay").innerHTML += `<p>${dateDetails} ║ ${roomDetails}</p>`
   })
   userBookings.pastStays.forEach(pBooking => {
     dateDetails = hotelDatabase.getDateDetails(pBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(pBooking.roomNumber)
-    document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} | ${roomDetails}</p>`
+    document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} ║ ${roomDetails}</p>`
   })
 }
 

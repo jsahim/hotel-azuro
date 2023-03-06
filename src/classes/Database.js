@@ -34,12 +34,14 @@ class Database {
     day = +(initialDate[2])
     month = monthList[(+(initialDate[1])-1)]
     year = initialDate[0]
-    let formattedDate = `${month} ${day}, ${year}`
+    let formattedDate = `${month.toUpperCase()} ${day}, ${year}`
     return formattedDate
   }
   getRoomDetails(roomNum){
+    let bedPlurality
     let foundRoom = this.rooms.find(room => room.number === roomNum)
-    let formattedDate = `${foundRoom.type}${foundRoom.numBeds}-${foundRoom.bedSize}`
+    foundRoom.numBeds === 1 ? bedPlurality = "BED": bedPlurality = "BEDS"
+    let formattedDate = `${foundRoom.type.toUpperCase()} ║ ${foundRoom.numBeds}-${foundRoom.bedSize.toUpperCase()} ${bedPlurality}`
     return formattedDate
   }
 }
