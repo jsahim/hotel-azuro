@@ -81,12 +81,16 @@ function displayUserDetails(){
   let userInst = hotelDatabase.customers.find(customer => customer.id === currentUser.id)
   userInst.allBookings = hotelDatabase.bookings.filter(booking => booking.userID === userInst.id)
   userInst.getTotalSpent(hotelDatabase.rooms)
-  let thiiis = userInst.sortBookings()
-  console.log(thiiis)
+  let userBookings = userInst.sortBookings()
   document.getElementById("navNameInsert").innerText = userInst.name
   document.getElementById("pointInsert").innerText = userInst.getPointsEarned()
   document.getElementById("homeNameInsert").innerText = userInst.getFirstName()
-
+  userBookings.futureStays.forEach(fBooking => {
+    document.getElementById("upcomingStayDisplay").innerHTML += `<p>${fBooking.date}</p>`
+  })
+  userBookings.pastStays.forEach(pBooking => {
+    document.getElementById("pastStayDisplay").innerHTML += `<p>${pBooking.date}</p>`
+  })    
 }
 
 

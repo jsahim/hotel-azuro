@@ -51,6 +51,10 @@ main {
   justify-content: space-evenly;
 }
 
+.upcoming-stay-display, .past-stay-display {
+  overflow-y: auto;
+}
+
 .datepicker {
   display: flex;
   flex-direction: row;
