@@ -23,11 +23,11 @@ class Customer {
   }
   getMemberLevel(){
     if(this.totalSpend <= 7000){
-      return "SILVER MEMBER"
+      return "Silver Member"
     } else if (this.totalSpend > 7000 && this.totalSpend < 10000){
-      return "GOLD MEMBER"
+      return "Gold Member"
     } else {
-      return "PLATINUM MEMBER"
+      return "Platinum Member"
     }
   }
   sortBookings(){

@@ -8,6 +8,12 @@ import './images/residential-suite.png';
 import './images/suite.png';
 import './images/single-room.png';
 import './images/junior-suite.png';
+import './images/bidet-icon.png';
+import './images/twin-icon.png';
+import './images/king-icon.png';
+import './images/queen-icon.png';
+import './images/full-icon.png';
+
 
 const loginView = document.getElementById("loginView") 
 const primeView = document.getElementById("primeView") 
@@ -139,9 +145,11 @@ function showRoomsPage(e){
 
 function displayRooms(matchRooms){
   resultsDisplay.innerHTML = ""
-  let bedWord 
+  let bedWord, bedString, bidetWord
   if(matchRooms.length > 0){
     matchRooms.forEach(room => {
+      room.hasBidet ? bidetWord = 'bidet-icon' :  bidetWord = 'bidet-icon hidden'
+      bedString = `<img class="icon" src="./images/${room.bedSize}-icon.png" alt="${room.bedSize} icon">`
       room.numBeds === 1 ? bedWord = "Bed" : bedWord = "Beds"
       resultsDisplay.innerHTML += 
       `<article class="room-option" id="room${room.number}">
@@ -149,6 +157,10 @@ function displayRooms(matchRooms){
         <div class"room-description">
           <h3>${room.formatType()}</h3>
           <p>${room.numBeds} ${room.formatBedSize()} ${bedWord}</p>
+          <div class="icons-container">
+            <div class="beds-container">${bedString.repeat(room.numBeds)}</div>
+            <div class=${bidetWord}><img class="icon" src="./images/bidet-icon.png" alt="bidet icon"></div>
+          </div>
         </div>
         <div class"book-details">
           <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>

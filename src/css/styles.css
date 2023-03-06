@@ -12,12 +12,32 @@ h2, h3 {
   font-family: 'Limelight', cursive;
 }
 
+h2 {
+  font-size: xx-large;
+  margin-bottom: 5%;
+}
+
+h3 {
+  font-size: x-large;
+}
+
 .login-view .prime-view {
   height: 100vh;
 }
 
 .prime-view {
   padding-top: 15vmin;
+}
+
+.icon{
+  height: 50px;
+  width: 50px;
+  margin: 0%;
+}
+
+.icons-container {
+  display: flex;
+  justify-content: center;
 }
 
 nav {
@@ -79,6 +99,14 @@ main {
   justify-content: center;
   height: inherit;
   width: 50%;
+}
+
+.user-spend {
+  border-left: 2px pink solid;
+}
+
+.money-spent, .points-accrued {
+  font-size: x-large;
 }
 
 .datepicker {
@@ -183,6 +211,7 @@ main {
 .room-option {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 2px #caaa5b solid;
   height: 20vmin;
   width: 100vmin;
