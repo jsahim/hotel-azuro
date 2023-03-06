@@ -3,10 +3,17 @@ import apiObject from '../apiCalls';
 import Database from './classes/Database';
 import Booking from './classes/Booking';
 import datepicker from 'js-datepicker';
+import MicroModal from 'micromodal'; 
 import './images/residential-suite.png';
 import './images/suite.png';
 import './images/single-room.png';
 import './images/junior-suite.png';
+import './images/bidet-icon.png';
+import './images/twin-icon.png';
+import './images/king-icon.png';
+import './images/queen-icon.png';
+import './images/full-icon.png';
+
 
 const loginView = document.getElementById("loginView") 
 const primeView = document.getElementById("primeView") 
@@ -16,22 +23,29 @@ const loginButton = document.getElementById("loginButton")
 const calendar = document.getElementById("calendar") 
 const dateSubmitButton = document.getElementById("dateSubmit") 
 const homeButton = document.getElementById("homeButton") 
+const modalCloseButton = document.getElementById("modalClose") 
 const resultsContainer = document.getElementById('resultsDisplay');
 const dashboardPage = document.getElementById("dashboardPage") 
 const filterBar = document.getElementById("filters")
 const resultsPage = document.getElementById("resultsPage") 
 const resultsDisplay = document.getElementById("resultsDisplay") 
+const body = document.querySelector('body');
 let bookingData, roomsData, customersData, hotelDatabase, currentUser
 
 loginButton.addEventListener("click", verifyLogin)
 homeButton.addEventListener("click", goHome)
 dateSubmitButton.addEventListener("click", showRoomsPage)
+modalCloseButton.addEventListener("click", goHome)
 filterBar.addEventListener("change", function() { 
   displayRooms(hotelDatabase.filterRoomType(this.value))
 })
 resultsContainer.addEventListener('click', (e) => {
   const isButton = e.target.nodeName === 'BUTTON';
-  isButton ? createNewBooking(e.target.id, calendar.value, currentUser) : null
+  if(isButton){
+    createNewBooking(e.target.id, calendar.value, currentUser)
+    MicroModal.show('modal');
+    body.classList.add('no-scroll');
+  } 
 })
 
 //functions
@@ -46,6 +60,7 @@ apiObject.getAllPromises()
 
 
 datepicker(calendar, {
+  minDate: new Date(),
   formatter: (calendar, date) => {
     let monthStr, dayStr, yearStr
     monthStr = (date.getMonth() + 1).toLocaleString('en-US', {minimumIntegerDigits: 2});
@@ -81,30 +96,37 @@ function displayUserDetails(){
   let userInst = hotelDatabase.customers.find(customer => customer.id === currentUser.id)
   userInst.allBookings = hotelDatabase.bookings.filter(booking => booking.userID === userInst.id)
   userInst.getTotalSpent(hotelDatabase.rooms)
-  let userBookings = userInst.sortBookings()
-  console.log(userBookings)
-  let dateDetails, roomDetails
   document.getElementById("navNameInsert").innerText = userInst.name
-  document.getElementById("pointInsert").innerText = userInst.getPointsEarned()
+  document.getElementById("pointInsert").innerText = `${userInst.getPointsEarned()} points`
   document.getElementById("homeNameInsert").innerText = userInst.getFirstName()
   document.getElementById("pointsAccrued").innerText = userInst.getPointsEarned()
+  document.getElementById("memberLevel").innerText = userInst.getMemberLevel()
   document.getElementById("moneySpent").innerText = `$${userInst.totalSpend}`
-  userBookings.futureStays.reverse().forEach(fBooking => {
+  displayUserBookings(userInst)
+}
+
+function displayUserBookings(userInst){
+  let userBookings = userInst.sortBookings()
+  let dateDetails, roomDetails
+  document.getElementById("upcomingStayDisplay").innerHTML = ""
+  document.getElementById("pastStayDisplay").innerHTML = ""
+  userBookings.futureStays.forEach(fBooking => {
     dateDetails = hotelDatabase.getDateDetails(fBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(fBooking.roomNumber)
     document.getElementById("upcomingStayDisplay").innerHTML += `<p>${dateDetails} | ${roomDetails}</p>`
   })
-  userBookings.pastStays.reverse().forEach(pBooking => {
+  userBookings.pastStays.forEach(pBooking => {
     dateDetails = hotelDatabase.getDateDetails(pBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(pBooking.roomNumber)
     document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} | ${roomDetails}</p>`
   })
 }
 
-
 function goHome(){
+  body.classList.remove('no-scroll');
   scroll(0,0)
   calendar.value = ""
+  displayUserDetails()
   toggleView(dashboardPage, "show")
   toggleView(resultsPage, "hide")
 }
@@ -123,9 +145,11 @@ function showRoomsPage(e){
 
 function displayRooms(matchRooms){
   resultsDisplay.innerHTML = ""
-  let bedWord 
+  let bedWord, bedString, bidetWord
   if(matchRooms.length > 0){
     matchRooms.forEach(room => {
+      room.hasBidet ? bidetWord = 'bidet-icon' :  bidetWord = 'bidet-icon hidden'
+      bedString = `<img class="icon" src="./images/${room.bedSize}-icon.png" alt="${room.bedSize} icon">`
       room.numBeds === 1 ? bedWord = "Bed" : bedWord = "Beds"
       resultsDisplay.innerHTML += 
       `<article class="room-option" id="room${room.number}">
@@ -133,6 +157,10 @@ function displayRooms(matchRooms){
         <div class"room-description">
           <h3>${room.formatType()}</h3>
           <p>${room.numBeds} ${room.formatBedSize()} ${bedWord}</p>
+          <div class="icons-container">
+            <div class="beds-container">${bedString.repeat(room.numBeds)}</div>
+            <div class=${bidetWord}><img class="icon" src="./images/bidet-icon.png" alt="bidet icon"></div>
+          </div>
         </div>
         <div class"book-details">
           <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>
@@ -149,5 +177,7 @@ function createNewBooking(buttonID, dateSelect, currentUser) {
   let roomNum = +(buttonID.split("n")[1])
   let dateFix = dateSelect.replaceAll("-","/")
   apiObject.apiRequest("bookings","POST", currentUser.id, dateFix, roomNum);
-  apiObject.apiRequest("bookings").then(bookData => hotelDatabase.bookings = bookData.bookings.map(bookObj => new Booking(bookObj)));
+  apiObject.apiRequest("bookings").then(bookData => {
+    return hotelDatabase.bookings = bookData.bookings.map(bookObj => new Booking(bookObj))
+  });
 }

@@ -1,6 +1,7 @@
 body {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+  margin: 0%;
 }
 
 .pointer {
@@ -11,14 +12,32 @@ h2, h3 {
   font-family: 'Limelight', cursive;
 }
 
-.login-view {
+h2 {
+  font-size: xx-large;
+  margin-bottom: 5%;
+}
+
+h3 {
+  font-size: x-large;
+}
+
+.login-view .prime-view {
   height: 100vh;
-  background-color: #caaa5b;
 }
 
 .prime-view {
-  height: 100vh;
   padding-top: 15vmin;
+}
+
+.icon{
+  height: 50px;
+  width: 50px;
+  margin: 0%;
+}
+
+.icons-container {
+  display: flex;
+  justify-content: center;
 }
 
 nav {
@@ -32,7 +51,7 @@ nav {
   right: 0;
   background-color: white;
   box-shadow: 0px 1px 5px #888888;
-  z-index: 3;
+  z-index: 1;
 }
 
 main {
@@ -49,6 +68,18 @@ main {
   width: inherit;
   display: flex;
   justify-content: space-evenly;
+}
+
+.user-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.user-info p {
+  font-size: x-large;
+  margin: 1%;
 }
 
 .upcoming-stay-display, .past-stay-display {
@@ -68,6 +99,14 @@ main {
   justify-content: center;
   height: inherit;
   width: 50%;
+}
+
+.user-spend {
+  border-left: 2px pink solid;
+}
+
+.money-spent, .points-accrued {
+  font-size: x-large;
 }
 
 .datepicker {
@@ -117,15 +156,16 @@ main {
   flex-direction: column;
   border: 2px blue solid;
   height: 15vmin;
-  width: 50vmin;
+  width: 40vmin;
   margin: 1%;
 }
 
 .home-dash-page, .room-results-page {
-  margin-top: 7%;
+  margin-top: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10vh;
 }
 
 .home-header {
@@ -171,6 +211,7 @@ main {
 .room-option {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 2px #caaa5b solid;
   height: 20vmin;
   width: 100vmin;
@@ -196,9 +237,33 @@ option{
   text-align: center;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  background-color: #003366;
+  height: 50vmin;
+  width: 50vmin;
+  z-index: 2;
+}
+
+.modal:before {
+  background: rgba(0, 0, 0, 0.6);
+  height: 1000px;
+  width: 1000px;
+  position: fixed;
+  z-index: 1;
+}
+
+.modal.is-open {
+  display: block;
+}
+
 .hidden, input::-webkit-calendar-picker-indicator {
   display: none;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
 
 @import '~js-datepicker/dist/datepicker.min.css';

@@ -13,20 +13,20 @@
   <section class="login-view" id="loginView">
     <form class="login-form" method="post">
       <label for="username">Username:</label><br>
-      <input type="text" id="userField" name="username" required value=""><br>
+      <input type="text" id="userField" name="username" value="" required><br>
       <label for="password">Password:</label><br>
-      <input type="text" id="passwordField" name="password" required value=""><br><br>
-      <input type="submit" id="loginButton" value="Login">
+      <input type="text" id="passwordField" name="password" value="" required><br><br>
+      <input type="submit" class="login-button pointer"  id="loginButton" value="Login">
     </form>     
   </section>
-  <section class="prime-view hidden" id="primeView">
+  <section class="prime-vie hidden" id="primeView">
     <nav>
       <div class="home-user-section">
         <img role="button" aria-label="Home Button" class="home-button pointer" id="homeButton" src="./images/hotel-logo.png" tabindex="0">
         <aside class="user-info">
           <p class="username" id="navNameInsert"></p>
           <p class="points" id="pointInsert"></p>
-          <p>Rewards Points</p>
+          <p class="member-level" id="memberLevel"></p>
         </aside>
       </div>
       <form class="datepicker">
@@ -56,9 +56,9 @@
         <div class="past-stay-display" id="pastStayDisplay"></div>
       </section>
       <section class="room-results-page hidden" id="resultsPage">
-        <h2>AVAILABLE ROOMS</h2>
+        <h2>ROOMS</h2>
         <form class="filter-rooms-form">
-          <label for="filters" class="filter-rooms-label">Filter Type</label>
+          <label for="filters" class="filter-rooms-label">Filter Room Type</label>
           <select name="filter-recipes" id="filters" class="input-bar filter-select pointer hover">
               <option id="filterDefault" value="all rooms" selected>All Rooms</option>
               <option value="single room">Single Rooms</option>
@@ -68,6 +68,16 @@
           </select>
         </form>
         <div class="results-display" id="resultsDisplay"></div>
+          <div class="modal" id="modal" aria-hidden="true">
+            <div tabindex="-1" data-micromodal-close>
+              <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
+                <h2 id="modal-1-title">Modal Title</h2>
+                  <button id="modalClose" aria-label="Close modal" data-micromodal-close>Close</button>
+                <div id="modal-1-content">Modal Content</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   </section>
