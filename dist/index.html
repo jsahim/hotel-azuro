@@ -25,44 +25,44 @@
     <img class="hotel-image" src="./images/hotel-image.png" alt="hotel image">
   </section>
   <section class="prime-view hidden" id="primeView">
-    <nav>
+     <nav>
       <div class="home-user-section">
         <img role="button" aria-label="Home Button" class="home-button pointer" id="homeButton" src="./images/hotel-logo.png" tabindex="0">
         <aside class="user-info">
-          <p class="username" id="navNameInsert"></p>
-          <p class="points" id="pointInsert"></p>
-          <p class="member-level" id="memberLevel"></p>
+          <p class="username" id="navNameInsert" tabindex="0"></p>
+          <p class="points" id="pointInsert" tabindex="0"></p>
+          <p class="member-level" id="memberLevel" tabindex="0"></p>
         </aside>
-      </div>
+      </div aria-label="Date Select">
       <form class="datepicker">
-        <label for="calendar" class="find-room-text">FIND ROOMS</label>
+        <label for="calendar" class="find-room-text" tabindex="0">FIND ROOMS</label>
         <input type="date" class="date-select" id="calendar" value="">
         <input type="submit" class="date-submit button pointer" id="dateSubmit" value="SEARCH">
       </form>
     </nav>
     <main>
       <section class="home-dash-page" id="dashboardPage">
-        <header class="home-header">
-          <h2>Welcome back to the Hotel Azuro, <span id="homeNameInsert"></span>.</h2>
+        <header class="home-header" tabindex="0">
+          <h2 tabindex="0">Welcome back to the Hotel Azuro, <span id="homeNameInsert"></span>.</h2>
           <div class="user-spend-rewards">
-            <div class="user-rewards" id="userRewards">
-              <p>REWARDS POINTS</p>
-              <p class="points-accrued" id="pointsAccrued"></p>
+            <div class="user-rewards" id="userRewards" tabindex="0">
+              <p tabindex="0">REWARDS POINTS</p>
+              <p class="points-accrued" id="pointsAccrued" tabindex="0"></p>
             </div>
-            <div class="user-spend">
-              <p>TOTAL SPEND</p>
-              <p class="money-spent" id="moneySpent"></p>
+            <div class="user-spend" tabindex="0">
+              <p tabindex="0">TOTAL SPEND</p>
+              <p class="money-spent" id="moneySpent" tabindex="0"></p>
             </div>
           </div>
         </header>
-        <h3 class="upcoming-label">Upcoming Stays</h3>
-        <div class="upcoming-stay-display" id="upcomingStayDisplay"></div>
-        <h3 class="past-label">Past Stays</h3>
-        <div class="past-stay-display" id="pastStayDisplay"></div>
+        <h3 class="upcoming-label" tabindex="0">Upcoming Stays</h3>
+        <div class="upcoming-stay-display" id="upcomingStayDisplay" tabindex="0"></div>
+        <h3 class="past-label" tabindex="0">Past Stays</h3>
+        <div class="past-stay-display" id="pastStayDisplay" tabindex="0"></div>
       </section>
       <section class="room-results-page hidden" id="resultsPage">
-        <h2>ROOMS</h2>
-        <form class="filter-rooms-form">
+        <h2 tabindex="0">ROOMS</h2>
+        <form class="filter-rooms-form" tabindex="0">
           <label for="filters" class="filter-rooms-label">Filter Room Type</label>
           <select name="filter-recipes" id="filters" class="input-bar filter-select pointer hover">
               <option id="filterDefault" value="all rooms" selected>All Rooms</option>
@@ -72,7 +72,7 @@
               <option value="residential suite">Residential Suites</option>
           </select>
         </form>
-        <div class="results-display" id="resultsDisplay"></div>
+        <div class="results-display" id="resultsDisplay" tabindex="0"></div>
         <div class="modal micromodal-slide" id="modalSlide" aria-hidden="true">
           <div class="modal-overlay" tabindex="-1" data-micromodal-close>
             <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -80,12 +80,12 @@
                 <h2 class="modal-title" id="modalTitle">CONFIRMATION</h2>
               </header>
               <main class="modal-content" id="modalContent">
-                <p>Your room has been booked.</p>
-                <p>DATE:<span id="confDate"></span></p>
-                <p>ROOM:<span id="confRoom"></span></p>
-                <p>BEDS:<span id="confBeds"></span></p>
-                <p>CONF#<span id="confCode"></span></p>
-                <p>Enjoy your stay!</p>
+                <p tabindex="0">Your room has been booked.</p>
+                <p tabindex="0">DATE:<span id="confDate"></span></p>
+                <p tabindex="0">ROOM:<span id="confRoom"></span></p>
+                <p tabindex="0">BEDS:<span id="confBeds"></span></p>
+                <p tabindex="0">CONF#<span id="confCode"></span></p>
+                <p tabindex="0">Enjoy your stay!</p>
               </main>
               <footer class="modal-footer">
                 <button class="modal-btn button" data-micromodal-close aria-label="Close this dialog window" id="modalClose">Close</button>
@@ -99,4 +99,3 @@
   <script src="bundle.js"></script>
 </body>
 </html>
-
