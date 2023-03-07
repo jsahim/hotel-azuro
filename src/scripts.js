@@ -66,7 +66,6 @@ apiObject.getAllPromises()
   roomsData = data[1].rooms;
   customersData = data[2].customers;
   hotelDatabase = new Database(bookingData, roomsData, customersData)
-  console.log(hotelDatabase);
 });
 
 
@@ -123,7 +122,6 @@ function displayUserDetails(){
 
 function displayUserBookings(userInst){
   let userBookings = userInst.sortBookings()
-  console.log(userBookings)
   let dateDetails, roomDetails
   document.getElementById("upcomingStayDisplay").innerHTML = ""
   document.getElementById("pastStayDisplay").innerHTML = ""

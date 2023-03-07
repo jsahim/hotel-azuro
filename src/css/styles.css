@@ -24,25 +24,22 @@ body {
   cursor: pointer;
 }
 
-h2, h3 {
-  font-family: 'Limelight', cursive;
-}
-
 h2 {
   font-size: 4rem;
   margin-bottom: 5%;
+  font-family: 'Limelight', cursive;
 }
 
 h3 {
   font-size: 2rem;
   margin: 0%;
+  font-family: 'Limelight', cursive;
 }
 
-.login-button {
-  padding: 3%;
-}
 
-.login-field {
+/* LOGIN SECTION */
+
+.login-button, .login-field {
   font-size: 1rem;
   padding: 3%;
 }
@@ -99,16 +96,8 @@ h3 {
   top: 15vmin;
 }
 
-.icon{
-  height: 50px;
-  width: 50px;
-  margin: 0%;
-}
 
-main, .icons-container {
-  display: flex;
-  justify-content: center;
-}
+/* NAV SECTION */
 
 nav {
   display: flex;
@@ -123,7 +112,6 @@ nav {
   box-shadow: 0px 1px 5px #888888;
   z-index: 1;
 }
-
 
 .home-button {
   width: 40vmin;
@@ -155,42 +143,6 @@ nav {
   color: white;
 }
 
-.upcoming-stay-display, .past-stay-display {
-  overflow-y: auto;
-  height: 20vmin;
-  width: 80vmin;
-  border: 5px #003366 solid;
-}
-
-.user-spend-rewards {
-  display: flex;
-  background-color: #caaa5b;
-  height: 20vmin;
-  width: 60vmin;
-}
-
-.upcoming-label, .past-label {
-  margin-top: 5%;
-}
-
-.user-spend, .user-rewards {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: inherit;
-  width: 50%;
-}
-
-.user-spend {
-  border-left: 5px white solid;
-}
-
-.money-spent, .points-accrued {
-  margin-top: 0%;
-  font-size: 2rem;
-  color: #003366;
-}
-
 .datepicker {
   display: flex;
   flex-direction: row;
@@ -215,18 +167,57 @@ nav {
   border-radius: 2px;
 }
 
-.home-dash-page, .room-results-page {
-  margin-top: 20vh;
+
+/* USER DASHBOARD */
+
+.user-spend-rewards {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10vh;
+  background-color: #caaa5b;
+  height: 20vmin;
+  width: 60vmin;
 }
 
-.home-header, .filter-rooms-form, .results-display  {
+.upcoming-stay-display, .past-stay-display {
+  overflow-y: auto;
+  height: 20vmin;
+  width: 80vmin;
+  border: 5px #003366 solid;
+}
+
+.upcoming-label, .past-label {
+  margin-top: 5%;
+}
+
+.user-spend, .user-rewards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: inherit;
+  width: 50%;
+}
+
+.user-spend {
+  border-left: 5px white solid;
+}
+
+.money-spent, .points-accrued {
+  margin-top: 0%;
+  font-size: 2rem;
+  color: #003366;
+}
+
+
+/* ROOM DISPLAY */
+
+.home-header, .filter-rooms-form, .results-display, .home-dash-page, .room-results-page {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.home-dash-page, .room-results-page {
+  margin-top: 20vh;
+  margin-bottom: 10vh;
 }
 
 .filter-select {
@@ -237,6 +228,17 @@ nav {
 
 .filter-rooms-label {
   font-size: large;
+}
+
+.icon{
+  height: 50px;
+  width: 50px;
+  margin: 0%;
+}
+
+main, .icons-container {
+  display: flex;
+  justify-content: center;
 }
 
 .room-option {
@@ -267,6 +269,9 @@ nav {
 option {
   text-align: center;
 }
+
+
+/* MODAL SECTION */
 
 .modal-overlay {
   position: fixed;
@@ -348,6 +353,9 @@ option {
 .micromodal-slide.is-open {
   display: block;
 }
+
+
+/* DISPLAY SECTION */
 
 .hidden, input::-webkit-calendar-picker-indicator, .micromodal-slide {
   display: none;
