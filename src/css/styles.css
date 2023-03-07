@@ -44,6 +44,10 @@ h3 {
   padding: 3%;
 }
 
+.login-button {
+  margin-top: 25%;
+}
+
 .login-view .prime-view {
   height: 100vh;
 }
@@ -81,6 +85,12 @@ h3 {
   background-color: #e6e6e6;
   padding: 20vmin 10vmin 20vmin 10vmin ;
   margin-bottom: 35%;
+}
+
+.login-form > div > label {
+ font-size: larger;
+ margin-top: 10%;
+ margin-bottom: 0%;
 }
 
 .login-form > div > img {
@@ -125,14 +135,13 @@ nav {
 }
 
 .user-info{
-  font-family: 'Limelight', cursive;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgba(0, 51 , 102, 0.8);
-  border: 5px #003366 solid;
+  border: #caaa5b double;
+  border-width: 10px;
   height: 15vmin;
-  width: 40vmin;
+  width: 35vmin;
   margin: 1%;
   font-kerning: none;
 }
@@ -140,7 +149,7 @@ nav {
 .user-info p {
   font-size: x-large;
   margin: 1%;
-  color: white;
+  color: #003366;
 }
 
 .datepicker {
@@ -304,13 +313,9 @@ option {
 }
 
 .modal-title {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.25;
-  color: #00449e;
-  box-sizing: border-box;
+  font-size: xx-large;
+  margin-bottom: 0%;
+  color: #003366;
 }
 
 .modal-content {
@@ -333,21 +338,17 @@ option {
   padding-right: 1rem;
   padding-top: .5rem;
   padding-bottom: .5rem;
-  background-color: #e6e6e6;
-  color: rgba(0,0,0,.8);
+  background-color: #003366;
+  color: white;
+  border: 2px white solid;
   border-radius: .25rem;
-  border-style: none;
-  border-width: 0;
-  cursor: pointer;
-  text-transform: none;
   overflow: visible;
   line-height: 1.15;
   margin: 0;
 }
 
-.modal-btn-primary {
-  background-color: #00449e;
-  color: #fff;
+.modal-btn:hover {
+  border-color: #003366;
 }
 
 .micromodal-slide.is-open {
