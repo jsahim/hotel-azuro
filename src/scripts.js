@@ -4,6 +4,8 @@ import Database from './classes/Database';
 import Booking from './classes/Booking';
 import datepicker from 'js-datepicker';
 import MicroModal from 'micromodal'; 
+import './images/hotel-logo.png';
+import './images/hotel-image.png';
 import './images/residential-suite.png';
 import './images/suite.png';
 import './images/single-room.png';
@@ -23,7 +25,7 @@ const loginButton = document.getElementById("loginButton")
 const calendar = document.getElementById("calendar") 
 const dateSubmitButton = document.getElementById("dateSubmit") 
 const homeButton = document.getElementById("homeButton") 
-const modalCloseButton = document.getElementById("modalClose") 
+const modal = document.getElementById("modalSlide") 
 const resultsContainer = document.getElementById('resultsDisplay');
 const dashboardPage = document.getElementById("dashboardPage") 
 const filterBar = document.getElementById("filters")
@@ -32,10 +34,12 @@ const resultsDisplay = document.getElementById("resultsDisplay")
 const body = document.querySelector('body');
 let bookingData, roomsData, customersData, hotelDatabase, currentUser
 
+
+body.addEventListener('keydown', (e) => e.key === "Escape" && modal.classList.contains("is-open") ? goHome() : null)
 loginButton.addEventListener("click", verifyLogin)
 homeButton.addEventListener("click", goHome)
 dateSubmitButton.addEventListener("click", showRoomsPage)
-modalCloseButton.addEventListener("click", goHome)
+modal.addEventListener("click", goHome)
 filterBar.addEventListener("change", function() { 
   displayRooms(hotelDatabase.filterRoomType(this.value))
 })
@@ -43,10 +47,12 @@ resultsContainer.addEventListener('click', (e) => {
   const isButton = e.target.nodeName === 'BUTTON';
   if(isButton){
     createNewBooking(e.target.id, calendar.value, currentUser)
-    MicroModal.show('modal');
-    body.classList.add('no-scroll');
+    setTimeout(() => {
+      createConfirmation(e.target.id, calendar.value)
+    }, 500);
   } 
 })
+
 
 //functions
 apiObject.getAllPromises()
@@ -97,7 +103,7 @@ function displayUserDetails(){
   userInst.allBookings = hotelDatabase.bookings.filter(booking => booking.userID === userInst.id)
   userInst.getTotalSpent(hotelDatabase.rooms)
   document.getElementById("navNameInsert").innerText = userInst.name
-  document.getElementById("pointInsert").innerText = `${userInst.getPointsEarned()} points`
+  document.getElementById("pointInsert").innerText = `${userInst.getPointsEarned()} pts.`
   document.getElementById("homeNameInsert").innerText = userInst.getFirstName()
   document.getElementById("pointsAccrued").innerText = userInst.getPointsEarned()
   document.getElementById("memberLevel").innerText = userInst.getMemberLevel()
@@ -113,12 +119,12 @@ function displayUserBookings(userInst){
   userBookings.futureStays.forEach(fBooking => {
     dateDetails = hotelDatabase.getDateDetails(fBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(fBooking.roomNumber)
-    document.getElementById("upcomingStayDisplay").innerHTML += `<p>${dateDetails} | ${roomDetails}</p>`
+    document.getElementById("upcomingStayDisplay").innerHTML += `<p>${dateDetails} ║ ${roomDetails}</p>`
   })
   userBookings.pastStays.forEach(pBooking => {
     dateDetails = hotelDatabase.getDateDetails(pBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(pBooking.roomNumber)
-    document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} | ${roomDetails}</p>`
+    document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} ║ ${roomDetails}</p>`
   })
 }
 
@@ -164,7 +170,7 @@ function displayRooms(matchRooms){
         </div>
         <div class"book-details">
           <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>
-          <button class="book-button" id="bookButton${room.number}">BOOK NOW</button>
+          <button class="book-button button" id="bookButton${room.number}">BOOK NOW</button>
         </div>
       </article>`
     })
@@ -178,6 +184,22 @@ function createNewBooking(buttonID, dateSelect, currentUser) {
   let dateFix = dateSelect.replaceAll("-","/")
   apiObject.apiRequest("bookings","POST", currentUser.id, dateFix, roomNum);
   apiObject.apiRequest("bookings").then(bookData => {
-    return hotelDatabase.bookings = bookData.bookings.map(bookObj => new Booking(bookObj))
+    hotelDatabase.bookings = bookData.bookings.map(bookObj => new Booking(bookObj))
+    return hotelDatabase.bookings 
   });
+}
+
+function createConfirmation(buttonID, dateSelect){
+  let roomNum = +(buttonID.split("n")[1])
+  console.log(roomNum)
+  let dateString = dateSelect.replaceAll("-", "/")
+  let book = hotelDatabase.bookings.find(book => book.date === dateString && book.roomNumber === roomNum)
+  let foundRoom = hotelDatabase.rooms.find(rm => rm.number === roomNum)
+  console.log(book, foundRoom)
+  document.getElementById("confDate").innerText = ` ${dateString}`
+  document.getElementById("confRoom").innerText = ` ${foundRoom.type}`
+  document.getElementById("confBeds").innerText = ` ${foundRoom.bedSize}-${foundRoom.numBeds}`
+  document.getElementById("confCode").innerText = ` ${book.code}`
+  body.classList.add('no-scroll');
+  MicroModal.show('modalSlide');
 }

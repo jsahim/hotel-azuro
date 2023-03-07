@@ -4,6 +4,22 @@ body {
   margin: 0%;
 }
 
+.button {
+    font-size: 1.2rem;
+    color: white;
+    border: 2px white solid;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #003366;
+    margin: 1rem;
+    border-radius: 2px;
+}
+
+.button:hover {
+  color: #003366;
+  background-color: white;
+  border-color: #003366;
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -13,20 +29,57 @@ h2, h3 {
 }
 
 h2 {
-  font-size: xx-large;
+  font-size: 4rem;
   margin-bottom: 5%;
 }
 
 h3 {
-  font-size: x-large;
+  font-size: 2rem;
+  margin: 0%;
 }
 
 .login-view .prime-view {
   height: 100vh;
 }
 
+.login-view {
+  display: flex;
+  justify-content: space-between;
+  background-color: #caaa5b;
+  position: fixed;
+}
+
 .prime-view {
-  padding-top: 15vmin;
+  padding-top: 3%;
+}
+
+.hotel-image {
+  width: 50%;
+  border-left: #e6e6e6 5px solid;
+}
+
+.login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.login-form > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 25%;
+  width: 25%;
+  background-color: #e6e6e6;
+  padding: 10vmin;
+  margin-bottom: 35%;
+}
+
+.login-form > div > img {
+  width: 100%;
+  margin-bottom: 10%;
 }
 
 .icon{
@@ -71,26 +124,40 @@ main {
 }
 
 .user-info{
+  font-family: 'Limelight', cursive;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: rgba(0, 51 , 102, 0.8);
+  border: 5px #003366 solid;
+  height: 15vmin;
+  width: 40vmin;
+  margin: 1%;
+  font-kerning: none;
 }
-
 
 .user-info p {
   font-size: x-large;
   margin: 1%;
+  color: white;
 }
 
 .upcoming-stay-display, .past-stay-display {
   overflow-y: auto;
+  height: 20vmin;
+  width: 80vmin;
+  border: 5px #003366 solid;
 }
 
 .user-spend-rewards {
   display: flex;
-  border: 2px pink solid;
+  background-color: #caaa5b;
   height: 20vmin;
-  width: 50vmin;
+  width: 60vmin;
+}
+
+.upcoming-label, .past-label {
+  margin-top: 5%;
 }
 
 .user-spend, .user-rewards {
@@ -102,11 +169,13 @@ main {
 }
 
 .user-spend {
-  border-left: 2px pink solid;
+  border-left: 5px white solid;
 }
 
 .money-spent, .points-accrued {
-  font-size: x-large;
+  margin-top: 0%;
+  font-size: 2rem;
+  color: #003366;
 }
 
 .datepicker {
@@ -114,7 +183,7 @@ main {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: larger;
+  font-size: 1rem;
   width: 100%;
   background-color: #003366;
 }
@@ -122,7 +191,7 @@ main {
 .datepicker > label {
   color: white;
   margin: 1vmin;
-  font-size: large;
+  font-size: 1.5rem;
 }
 
 .date-select {
@@ -133,35 +202,8 @@ main {
   border-radius: 2px;
 }
 
-.date-submit {
-  font-size: small;
-  height: 28px;
-  color: white;
-  border: 2px white solid;
-  font-family: 'Montserrat', sans-serif;
-  background-color: #003366;
-  margin-left: 1%;
-  border-radius: 2px;
-
-}
-
-.date-submit:hover {
-  color: #003366;
-  background-color: white;
-  border-color: white;
-}
-
-.user-info{
-  display: flex;
-  flex-direction: column;
-  border: 2px blue solid;
-  height: 15vmin;
-  width: 40vmin;
-  margin: 1%;
-}
-
 .home-dash-page, .room-results-page {
-  margin-top: 30vh;
+  margin-top: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,17 +216,6 @@ main {
   align-items: center;
 }
 
-.upcoming-stay-display {
-  border: 2px red solid;
-  height: 20vmin;
-  width: 80vmin;
-}
-
-.past-stay-display {
-  border: 2px green solid;
-  height: 20vmin;
-  width: 80vmin;
-}
 
 .filter-select {
   font-size: large;
@@ -212,11 +243,11 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px #caaa5b solid;
+  border: 5px #caaa5b solid;
   height: 20vmin;
   width: 100vmin;
   margin: 1%;
-  padding: 1%;
+  padding: 2%;
 }
 
 .room-option > img {
@@ -226,39 +257,100 @@ main {
 
 .price-header {
   font-family: 'Montserrat', sans-serif;
-  font-size: x-large;
+  margin: 0%;
 }
 
 .price-header > span {
   font-size: small;
 }
 
-option{
+option {
   text-align: center;
 }
 
-.modal {
-  display: none;
+.modal-overlay {
   position: fixed;
-  background-color: #003366;
-  height: 50vmin;
-  width: 50vmin;
-  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
 }
 
-.modal:before {
-  background: rgba(0, 0, 0, 0.6);
-  height: 1000px;
-  width: 1000px;
-  position: fixed;
-  z-index: 1;
+.modal-container {
+  background-color: #fff;
+  padding: 30px;
+  max-width: 500px;
+  max-height: 100vh;
+  border-radius: 4px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background-color: #e6e6e6;
+  border: 5px #003366 solid;
 }
 
-.modal.is-open {
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: #00449e;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: rgba(0,0,0,.8);
+}
+
+.modal-content p span {
+  font-size: 1.5rem;
+}
+
+.modal-btn {
+  font-size: .875rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  background-color: #e6e6e6;
+  color: rgba(0,0,0,.8);
+  border-radius: .25rem;
+  border-style: none;
+  border-width: 0;
+  cursor: pointer;
+  text-transform: none;
+  overflow: visible;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.modal-btn-primary {
+  background-color: #00449e;
+  color: #fff;
+}
+
+.micromodal-slide.is-open {
   display: block;
 }
 
-.hidden, input::-webkit-calendar-picker-indicator {
+.hidden, input::-webkit-calendar-picker-indicator, .micromodal-slide {
   display: none;
 }
 

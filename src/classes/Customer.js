@@ -32,7 +32,6 @@ class Customer {
   }
   sortBookings(){
     let today = new Date().toISOString().split('T')[0].replaceAll("-" ,"/")
-    console.log(today)
     return this.allBookings.reduce((acc, bookObj) => {
       if(bookObj.date >= today){
         acc.futureStays.push(bookObj)
