@@ -18,12 +18,9 @@ import './images/full-icon.png';
 
 
 //GLOBAL VARIABLES
-
-const loginView = document.getElementById("loginView") 
 const primeView = document.getElementById("primeView") 
 const userField = document.getElementById("userField") 
 const passwordField = document.getElementById("passwordField") 
-const loginButton = document.getElementById("loginButton") 
 const calendar = document.getElementById("calendar") 
 const dateSubmitButton = document.getElementById("dateSubmit") 
 const homeButton = document.getElementById("homeButton") 
@@ -40,7 +37,6 @@ let bookingData, roomsData, customersData, hotelDatabase, currentUser
 //EVENT LISTENERS
 
 body.addEventListener('keydown', (e) => e.key === "Escape" && modal.classList.contains("is-open") ? goHome() : null)
-loginButton.addEventListener("click", verifyLogin)
 homeButton.addEventListener("click", goHome)
 dateSubmitButton.addEventListener("click", showRoomsPage)
 modal.addEventListener("click", goHome)
@@ -66,6 +62,7 @@ apiObject.getAllPromises()
   roomsData = data[1].rooms;
   customersData = data[2].customers;
   hotelDatabase = new Database(bookingData, roomsData, customersData)
+  verifyLogin()
 });
 
 
@@ -89,22 +86,10 @@ function toggleView(element, action){
   }
 }
 
-function verifyLogin(e){
-  e.preventDefault()
-  if(!userField.value || !passwordField.value){
-    document.getElementById("errorMessage").innerText = "BOTH FIELDS REQUIRED"
-  } else {
-    document.getElementById("errorMessage").innerText = "INCORRECT USERNAME / PASSWORD"
-  }
-  const foundUser = hotelDatabase.customers.find(cust => {
-    return cust.username === userField.value && cust.password === passwordField.value
-  })
-  if(foundUser){
-    currentUser = foundUser
-    toggleView(loginView, "hide")
-    toggleView(primeView, "show")
-    displayUserDetails()
-  }
+function verifyLogin(){
+  currentUser = hotelDatabase.customers[0]
+  console.log(currentUser);
+  displayUserDetails()
 }
 
 function displayUserDetails(){
@@ -167,18 +152,18 @@ function displayRooms(matchRooms){
       bedString = `<img class="icon" src="./images/${room.bedSize}-icon.png" alt="${room.bedSize} icon">`
       room.numBeds === 1 ? bedWord = "Bed" : bedWord = "Beds"
       resultsDisplay.innerHTML += 
-      `<article class="room-option" id="room${room.number}">
+      `<article class="room-option" id="room${room.number}" tabindex="0">
         <img class"room-image" src="./images/${room.type.replace(" ", "-")}.png" alt="${room.type} image">
         <div class"room-description">
-          <h3>${room.type.toUpperCase()}</h3>
-          <p>${room.numBeds} ${room.bedSize.charAt(0).toUpperCase() + room.bedSize.slice(1)} ${bedWord}</p>
+          <h3 tabindex="0">${room.type.toUpperCase()}</h3>
+          <p tabindex="0">${room.numBeds} ${room.bedSize.charAt(0).toUpperCase() + room.bedSize.slice(1)} ${bedWord}</p>
           <div class="icons-container">
-            <div class="beds-container">${bedString.repeat(room.numBeds)}</div>
+            <div class="beds-container" tabindex="0">${bedString.repeat(room.numBeds)}</div>
             <div class=${bidetWord}><img class="icon" src="./images/bidet-icon.png" alt="bidet icon"></div>
           </div>
         </div>
         <div class"book-details">
-          <h3 class="price-header">$${room.costPerNight.toFixed(2).toString()}<br><span>per night</span></h3>
+          <h3 class="price-header" tabindex="0">$${room.costPerNight.toFixed(2).toString()}<br><span>per night</span></h3>
           <button class="book-button button pointer" id="bookButton${room.number}">BOOK NOW</button>
         </div>
       </article>`
