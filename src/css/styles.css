@@ -299,14 +299,13 @@ option {
 }
 
 .modal-container {
-  background-color: #fff;
   padding: 30px;
   max-width: 500px;
   max-height: 100vh;
   border-radius: 4px;
   overflow-y: auto;
   box-sizing: border-box;
-  background-color: #e6e6e6;
+  background-color: white;
   border: 5px #003366 solid;
 }
 
