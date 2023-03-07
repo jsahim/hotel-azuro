@@ -170,17 +170,17 @@ function displayRooms(matchRooms){
       room.numBeds === 1 ? bedWord = "Bed" : bedWord = "Beds"
       resultsDisplay.innerHTML += 
       `<article class="room-option" id="room${room.number}">
-        <img class"room-image" src="${room.createImagePath()}" alt="${room.type} image">
+        <img class"room-image" src="./images/${room.type.replace(" ", "-")}.png" alt="${room.type} image">
         <div class"room-description">
-          <h3>${room.formatType()}</h3>
-          <p>${room.numBeds} ${room.formatBedSize()} ${bedWord}</p>
+          <h3>${room.type.toUpperCase()}</h3>
+          <p>${room.numBeds} ${room.bedSize.charAt(0).toUpperCase() + room.bedSize.slice(1)} ${bedWord}</p>
           <div class="icons-container">
             <div class="beds-container">${bedString.repeat(room.numBeds)}</div>
             <div class=${bidetWord}><img class="icon" src="./images/bidet-icon.png" alt="bidet icon"></div>
           </div>
         </div>
         <div class"book-details">
-          <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>
+          <h3 class="price-header">$${room.costPerNight.toFixed(2).toString()}<br><span>per night</span></h3>
           <button class="book-button button pointer" id="bookButton${room.number}">BOOK NOW</button>
         </div>
       </article>`
