@@ -32,7 +32,7 @@ class Customer {
   }
   sortBookings(){
     let today = new Date().toISOString().split('T')[0].replaceAll("-" ,"/")
-    return this.allBookings.reduce((acc, bookObj) => {
+    let bookingObj = this.allBookings.reduce((acc, bookObj) => {
       if(bookObj.date >= today){
         acc.futureStays.push(bookObj)
       } else {
@@ -40,6 +40,22 @@ class Customer {
       }
       return acc
     }, { pastStays: [], futureStays: [] })
+    let pastArray, futureArray
+    pastArray = bookingObj.pastStays
+    .sort(function(a, b) {
+      let c = new Date(a.date);
+      let d = new Date(b.date);
+      return d-c;
+    });
+    futureArray = bookingObj.futureStays
+    .sort(function(a, b) {
+      let c = new Date(a.date);
+      let d = new Date(b.date);
+      return d-c;
+    });
+    bookingObj.pastStays = pastArray
+    bookingObj.futureStays = futureArray
+    return bookingObj
   }
 }
 

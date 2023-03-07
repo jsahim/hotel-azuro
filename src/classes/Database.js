@@ -29,19 +29,19 @@ class Database {
   }
   getDateDetails(date){
     let monthList = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-    let day, month, year, initialDate
+    let day, month, year, initialDate, formattedDate
     initialDate = date.split("/")
     day = +(initialDate[2])
     month = monthList[(+(initialDate[1])-1)]
     year = initialDate[0]
-    let formattedDate = `${month.toUpperCase()} ${day}, ${year}`
+    formattedDate = `${month.toUpperCase()} ${day}, ${year}`
     return formattedDate
   }
   getRoomDetails(roomNum){
     let bedPlurality
     let foundRoom = this.rooms.find(room => room.number === roomNum)
     foundRoom.numBeds === 1 ? bedPlurality = "BED": bedPlurality = "BEDS"
-    let formattedDate = `${foundRoom.type.toUpperCase()} ║ ${foundRoom.numBeds}-${foundRoom.bedSize.toUpperCase()} ${bedPlurality}`
+    let formattedDate = `${foundRoom.type.toUpperCase()} ┃ ${foundRoom.numBeds}-${foundRoom.bedSize.toUpperCase()} ${bedPlurality}`
     return formattedDate
   }
 }

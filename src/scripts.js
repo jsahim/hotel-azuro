@@ -123,18 +123,19 @@ function displayUserDetails(){
 
 function displayUserBookings(userInst){
   let userBookings = userInst.sortBookings()
+  console.log(userBookings)
   let dateDetails, roomDetails
   document.getElementById("upcomingStayDisplay").innerHTML = ""
   document.getElementById("pastStayDisplay").innerHTML = ""
   userBookings.futureStays.forEach(fBooking => {
     dateDetails = hotelDatabase.getDateDetails(fBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(fBooking.roomNumber)
-    document.getElementById("upcomingStayDisplay").innerHTML += `<p>${dateDetails} ║ ${roomDetails}</p>`
+    document.getElementById("upcomingStayDisplay").innerHTML += `<p>${dateDetails} ┃ ${roomDetails}</p>`
   })
   userBookings.pastStays.forEach(pBooking => {
     dateDetails = hotelDatabase.getDateDetails(pBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(pBooking.roomNumber)
-    document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} ║ ${roomDetails}</p>`
+    document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} ┃ ${roomDetails}</p>`
   })
 }
 
@@ -180,7 +181,7 @@ function displayRooms(matchRooms){
         </div>
         <div class"book-details">
           <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>
-          <button class="book-button button" id="bookButton${room.number}">BOOK NOW</button>
+          <button class="book-button button pointer" id="bookButton${room.number}">BOOK NOW</button>
         </div>
       </article>`
     })
