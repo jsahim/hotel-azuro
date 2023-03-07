@@ -167,18 +167,18 @@ function displayRooms(matchRooms){
       bedString = `<img class="icon" src="./images/${room.bedSize}-icon.png" alt="${room.bedSize} icon">`
       room.numBeds === 1 ? bedWord = "Bed" : bedWord = "Beds"
       resultsDisplay.innerHTML += 
-      `<article class="room-option" id="room${room.number}">
+      `<article class="room-option" id="room${room.number}" tabindex="0">
         <img class"room-image" src="./images/${room.type.replace(" ", "-")}.png" alt="${room.type} image">
         <div class"room-description">
-          <h3>${room.type.toUpperCase()}</h3>
-          <p>${room.numBeds} ${room.bedSize.charAt(0).toUpperCase() + room.bedSize.slice(1)} ${bedWord}</p>
+          <h3 tabindex="0">${room.type.toUpperCase()}</h3>
+          <p tabindex="0">${room.numBeds} ${room.bedSize.charAt(0).toUpperCase() + room.bedSize.slice(1)} ${bedWord}</p>
           <div class="icons-container">
-            <div class="beds-container">${bedString.repeat(room.numBeds)}</div>
+            <div class="beds-container" tabindex="0">${bedString.repeat(room.numBeds)}</div>
             <div class=${bidetWord}><img class="icon" src="./images/bidet-icon.png" alt="bidet icon"></div>
           </div>
         </div>
         <div class"book-details">
-          <h3 class="price-header">$${room.costPerNight.toFixed(2).toString()}<br><span>per night</span></h3>
+          <h3 class="price-header" tabindex="0">$${room.costPerNight.toFixed(2).toString()}<br><span>per night</span></h3>
           <button class="book-button button pointer" id="bookButton${room.number}">BOOK NOW</button>
         </div>
       </article>`
