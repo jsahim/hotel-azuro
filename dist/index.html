@@ -33,10 +33,10 @@
           <p class="points" id="pointInsert" tabindex="0"></p>
           <p class="member-level" id="memberLevel" tabindex="0"></p>
         </aside>
-      </div aria-label="Date Select">
+      </div>
       <form class="datepicker">
-        <label for="calendar" class="find-room-text" tabindex="0">FIND ROOMS</label>
-        <input type="date" class="date-select" id="calendar" value="">
+        <label for="calendar" class="find-room-text" id="calLabel" tabindex="0">FIND ROOMS</label>
+        <input type="date" class="date-select" id="calendar" value="" aria-labelledby="calLabel">
         <input type="submit" class="date-submit button pointer" id="dateSubmit" value="SEARCH">
       </form>
     </nav>
