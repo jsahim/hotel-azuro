@@ -157,4 +157,4 @@ const customers = [
   }
 ];
 
-export default {bookings, customers, rooms}
+export {bookings, customers, rooms}
