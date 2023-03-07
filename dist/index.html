@@ -12,12 +12,13 @@
 <body>
   <section class="login-view" id="loginView">
     <form class="login-form" method="post">
-      <div>
+      <div class="login-window">
+        <p class="error-message" id="errorMessage"></p>
         <img src="./images/hotel-logo.png" alt="hotel logo">
         <label for="username">Username</label><br>
-        <input type="text" id="userField" name="username" value="" required><br>
+        <input type="text" class="login-field" id="userField" name="username" value="" required><br>
         <label for="password">Password</label><br>
-        <input type="text" id="passwordField" name="password" value="" required><br><br>
+        <input type="text"  class="login-field"id="passwordField" name="password" value="" required><br><br>
         <input type="submit" class="login-button button pointer"  id="loginButton" value="Login">
     </div>
     </form>
