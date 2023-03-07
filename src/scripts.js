@@ -66,7 +66,6 @@ apiObject.getAllPromises()
   roomsData = data[1].rooms;
   customersData = data[2].customers;
   hotelDatabase = new Database(bookingData, roomsData, customersData)
-  console.log(hotelDatabase);
 });
 
 
@@ -129,12 +128,12 @@ function displayUserBookings(userInst){
   userBookings.futureStays.forEach(fBooking => {
     dateDetails = hotelDatabase.getDateDetails(fBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(fBooking.roomNumber)
-    document.getElementById("upcomingStayDisplay").innerHTML += `<p>${dateDetails} ║ ${roomDetails}</p>`
+    document.getElementById("upcomingStayDisplay").innerHTML += `<p>${dateDetails} ┃ ${roomDetails}</p>`
   })
   userBookings.pastStays.forEach(pBooking => {
     dateDetails = hotelDatabase.getDateDetails(pBooking.date)
     roomDetails = hotelDatabase.getRoomDetails(pBooking.roomNumber)
-    document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} ║ ${roomDetails}</p>`
+    document.getElementById("pastStayDisplay").innerHTML += `<p>${dateDetails} ┃ ${roomDetails}</p>`
   })
 }
 
@@ -169,18 +168,18 @@ function displayRooms(matchRooms){
       room.numBeds === 1 ? bedWord = "Bed" : bedWord = "Beds"
       resultsDisplay.innerHTML += 
       `<article class="room-option" id="room${room.number}">
-        <img class"room-image" src="${room.createImagePath()}" alt="${room.type} image">
+        <img class"room-image" src="./images/${room.type.replace(" ", "-")}.png" alt="${room.type} image">
         <div class"room-description">
-          <h3>${room.formatType()}</h3>
-          <p>${room.numBeds} ${room.formatBedSize()} ${bedWord}</p>
+          <h3>${room.type.toUpperCase()}</h3>
+          <p>${room.numBeds} ${room.bedSize.charAt(0).toUpperCase() + room.bedSize.slice(1)} ${bedWord}</p>
           <div class="icons-container">
             <div class="beds-container">${bedString.repeat(room.numBeds)}</div>
             <div class=${bidetWord}><img class="icon" src="./images/bidet-icon.png" alt="bidet icon"></div>
           </div>
         </div>
         <div class"book-details">
-          <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>
-          <button class="book-button button" id="bookButton${room.number}">BOOK NOW</button>
+          <h3 class="price-header">$${room.costPerNight.toFixed(2).toString()}<br><span>per night</span></h3>
+          <button class="book-button button pointer" id="bookButton${room.number}">BOOK NOW</button>
         </div>
       </article>`
     })
