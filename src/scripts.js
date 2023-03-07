@@ -88,7 +88,6 @@ function toggleView(element, action){
 
 function verifyLogin(){
   currentUser = hotelDatabase.customers[0]
-  console.log(currentUser);
   displayUserDetails()
 }
 
