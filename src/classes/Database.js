@@ -41,8 +41,8 @@ class Database {
     let bedPlurality
     let foundRoom = this.rooms.find(room => room.number === roomNum)
     foundRoom.numBeds === 1 ? bedPlurality = "BED": bedPlurality = "BEDS"
-    let formattedDate = `${foundRoom.type.toUpperCase()} ┃ ${foundRoom.numBeds}-${foundRoom.bedSize.toUpperCase()} ${bedPlurality}`
-    return formattedDate
+    let formattedType = `${foundRoom.type.toUpperCase()} ┃ ${foundRoom.numBeds}-${foundRoom.bedSize.toUpperCase()} ${bedPlurality}`
+    return formattedType
   }
 }
 
