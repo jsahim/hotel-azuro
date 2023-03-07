@@ -15,10 +15,10 @@
       <div class="login-window">
         <p class="error-message" id="errorMessage"></p>
         <img src="./images/hotel-logo.png" alt="hotel logo">
-        <label for="username">Username</label>
-        <input type="text" class="login-field" id="userField" name="username" value="" required>
-        <label for="password">Password</label>
-        <input type="text"  class="login-field" id="passwordField" name="password" value="" required>
+        <label id="userLabel" for="username">Username</label>
+        <input type="text" class="login-field" id="userField" name="username" value="" required aria-labelledby="userLabel">
+        <label id="passLabel" for="password">Password</label>
+        <input type="text"  class="login-field" id="passwordField" name="password" value="" required aria-labelledby="passLabel">
         <input type="submit" class="login-button button pointer"  id="loginButton" value="LOGIN">
     </div>
     </form>
