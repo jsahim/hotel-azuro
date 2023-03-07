@@ -4,6 +4,22 @@ body {
   margin: 0%;
 }
 
+.button {
+    font-size: 1.2rem;
+    color: white;
+    border: 2px white solid;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #003366;
+    margin: 1rem;
+    border-radius: 2px;
+}
+
+.button:hover {
+  color: #003366;
+  background-color: white;
+  border-color: #003366;
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -18,7 +34,8 @@ h2 {
 }
 
 h3 {
-  font-size: x-large;
+  font-size: 2rem;
+  margin: 0%;
 }
 
 .login-view .prime-view {
@@ -107,26 +124,40 @@ main {
 }
 
 .user-info{
+  font-family: 'Limelight', cursive;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: rgba(0, 51 , 102, 0.8);
+  border: 5px #003366 solid;
+  height: 15vmin;
+  width: 40vmin;
+  margin: 1%;
+  font-kerning: none;
 }
-
 
 .user-info p {
   font-size: x-large;
   margin: 1%;
+  color: white;
 }
 
 .upcoming-stay-display, .past-stay-display {
   overflow-y: auto;
+  height: 20vmin;
+  width: 80vmin;
+  border: 5px #003366 solid;
 }
 
 .user-spend-rewards {
   display: flex;
-  border: 2px #caaa5b solid;
+  background-color: #caaa5b;
   height: 20vmin;
-  width: 50vmin;
+  width: 60vmin;
+}
+
+.upcoming-label, .past-label {
+  margin-top: 5%;
 }
 
 .user-spend, .user-rewards {
@@ -138,12 +169,13 @@ main {
 }
 
 .user-spend {
-  border-left: 2px #caaa5b solid;
-  border-radius: 5px;
+  border-left: 5px white solid;
 }
 
 .money-spent, .points-accrued {
-  font-size: x-large;
+  margin-top: 0%;
+  font-size: 2rem;
+  color: #003366;
 }
 
 .datepicker {
@@ -151,7 +183,7 @@ main {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: larger;
+  font-size: 1rem;
   width: 100%;
   background-color: #003366;
 }
@@ -159,7 +191,7 @@ main {
 .datepicker > label {
   color: white;
   margin: 1vmin;
-  font-size: large;
+  font-size: 1.5rem;
 }
 
 .date-select {
@@ -168,33 +200,6 @@ main {
   text-align: center;
   border: 2px white solid;
   border-radius: 2px;
-}
-
-.date-submit {
-  font-size: small;
-  height: 28px;
-  color: white;
-  border: 2px white solid;
-  font-family: 'Montserrat', sans-serif;
-  background-color: #003366;
-  margin-left: 1%;
-  border-radius: 2px;
-
-}
-
-.date-submit:hover {
-  color: #003366;
-  background-color: white;
-  border-color: white;
-}
-
-.user-info{
-  display: flex;
-  flex-direction: column;
-  border: 2px #003366 solid;
-  height: 15vmin;
-  width: 40vmin;
-  margin: 1%;
 }
 
 .home-dash-page, .room-results-page {
@@ -211,17 +216,6 @@ main {
   align-items: center;
 }
 
-.upcoming-stay-display {
-  border: 2px #003366 solid;
-  height: 20vmin;
-  width: 80vmin;
-}
-
-.past-stay-display {
-  border: 2px #003366 solid;
-  height: 20vmin;
-  width: 80vmin;
-}
 
 .filter-select {
   font-size: large;
@@ -249,11 +243,11 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px #caaa5b solid;
+  border: 5px #caaa5b solid;
   height: 20vmin;
   width: 100vmin;
   margin: 1%;
-  padding: 1%;
+  padding: 2%;
 }
 
 .room-option > img {
@@ -263,18 +257,18 @@ main {
 
 .price-header {
   font-family: 'Montserrat', sans-serif;
-  font-size: x-large;
+  margin: 0%;
 }
 
 .price-header > span {
   font-size: small;
 }
 
-option{
+option {
   text-align: center;
 }
 
-.modal__overlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -287,7 +281,7 @@ option{
   z-index: 3;
 }
 
-.modal__container {
+.modal-container {
   background-color: #fff;
   padding: 30px;
   max-width: 500px;
@@ -295,15 +289,17 @@ option{
   border-radius: 4px;
   overflow-y: auto;
   box-sizing: border-box;
+  background-color: #e6e6e6;
+  border: 5px #003366 solid;
 }
 
-.modal__header {
+.modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.modal__title {
+.modal-title {
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 600;
@@ -313,14 +309,7 @@ option{
   box-sizing: border-box;
 }
 
-.modal__close {
-  background: transparent;
-  border: 0;
-}
-
-.modal__header .modal__close:before { content: "\2715"; }
-
-.modal__content {
+.modal-content {
   display: flex;
   flex-direction: column;
   text-align: start;
@@ -330,7 +319,11 @@ option{
   color: rgba(0,0,0,.8);
 }
 
-.modal__btn {
+.modal-content p span {
+  font-size: 1.5rem;
+}
+
+.modal-btn {
   font-size: .875rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -346,82 +339,18 @@ option{
   overflow: visible;
   line-height: 1.15;
   margin: 0;
-  will-change: transform;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  transition: -webkit-transform .25s ease-out;
-  transition: transform .25s ease-out;
-  transition: transform .25s ease-out,-webkit-transform .25s ease-out;
 }
 
-.modal__btn:focus, .modal__btn:hover {
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.modal__btn-primary {
+.modal-btn-primary {
   background-color: #00449e;
   color: #fff;
-}
-
-
-
-/**************************\
-  Demo Animation Style
-\**************************/
-@keyframes mmfadeIn {
-    from { opacity: 0; }
-      to { opacity: 1; }
-}
-
-@keyframes mmfadeOut {
-    from { opacity: 1; }
-      to { opacity: 0; }
-}
-
-@keyframes mmslideIn {
-  from { transform: translateY(15%); }
-    to { transform: translateY(0); }
-}
-
-@keyframes mmslideOut {
-    from { transform: translateY(0); }
-    to { transform: translateY(-10%); }
-}
-
-.micromodal-slide {
-  display: none;
 }
 
 .micromodal-slide.is-open {
   display: block;
 }
 
-.micromodal-slide[aria-hidden="false"] .modal__overlay {
-  animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
-}
-
-.micromodal-slide[aria-hidden="false"] .modal__container {
-  animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
-}
-
-.micromodal-slide[aria-hidden="true"] .modal__overlay {
-  animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
-}
-
-.micromodal-slide[aria-hidden="true"] .modal__container {
-  animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
-}
-
-.micromodal-slide .modal__container,
-.micromodal-slide .modal__overlay {
-  will-change: transform;
-}
-
-.hidden, input::-webkit-calendar-picker-indicator {
+.hidden, input::-webkit-calendar-picker-indicator, .micromodal-slide {
   display: none;
 }
 

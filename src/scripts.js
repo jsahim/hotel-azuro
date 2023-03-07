@@ -25,7 +25,7 @@ const loginButton = document.getElementById("loginButton")
 const calendar = document.getElementById("calendar") 
 const dateSubmitButton = document.getElementById("dateSubmit") 
 const homeButton = document.getElementById("homeButton") 
-const modal = document.getElementById("modal-1") 
+const modal = document.getElementById("modalSlide") 
 const resultsContainer = document.getElementById('resultsDisplay');
 const dashboardPage = document.getElementById("dashboardPage") 
 const filterBar = document.getElementById("filters")
@@ -103,7 +103,7 @@ function displayUserDetails(){
   userInst.allBookings = hotelDatabase.bookings.filter(booking => booking.userID === userInst.id)
   userInst.getTotalSpent(hotelDatabase.rooms)
   document.getElementById("navNameInsert").innerText = userInst.name
-  document.getElementById("pointInsert").innerText = `${userInst.getPointsEarned()} points`
+  document.getElementById("pointInsert").innerText = `${userInst.getPointsEarned()} pts.`
   document.getElementById("homeNameInsert").innerText = userInst.getFirstName()
   document.getElementById("pointsAccrued").innerText = userInst.getPointsEarned()
   document.getElementById("memberLevel").innerText = userInst.getMemberLevel()
@@ -170,7 +170,7 @@ function displayRooms(matchRooms){
         </div>
         <div class"book-details">
           <h3 class="price-header">$${room.formatPrice()}<br><span>per night</span></h3>
-          <button class="book-button" id="bookButton${room.number}">BOOK NOW</button>
+          <button class="book-button button" id="bookButton${room.number}">BOOK NOW</button>
         </div>
       </article>`
     })
@@ -201,5 +201,5 @@ function createConfirmation(buttonID, dateSelect){
   document.getElementById("confBeds").innerText = ` ${foundRoom.bedSize}-${foundRoom.numBeds}`
   document.getElementById("confCode").innerText = ` ${book.code}`
   body.classList.add('no-scroll');
-  MicroModal.show('modal-1');
+  MicroModal.show('modalSlide');
 }

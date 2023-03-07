@@ -18,7 +18,7 @@
         <input type="text" id="userField" name="username" value="" required><br>
         <label for="password">Password</label><br>
         <input type="text" id="passwordField" name="password" value="" required><br><br>
-        <input type="submit" class="login-button pointer"  id="loginButton" value="Login">
+        <input type="submit" class="login-button button pointer"  id="loginButton" value="Login">
     </div>
     </form>
     <img class="hotel-image" src="./images/hotel-image.png" alt="hotel image">
@@ -36,7 +36,7 @@
       <form class="datepicker">
         <label for="calendar" class="find-room-text">FIND ROOMS</label>
         <input type="date" class="date-select" id="calendar" value="">
-        <input type="submit" class="date-submit pointer" id="dateSubmit" value="SEARCH">
+        <input type="submit" class="date-submit button pointer" id="dateSubmit" value="SEARCH">
       </form>
     </nav>
     <main>
@@ -45,18 +45,18 @@
           <h2>Welcome back to the Hotel Azuro, <span id="homeNameInsert"></span>.</h2>
           <div class="user-spend-rewards">
             <div class="user-rewards" id="userRewards">
+              <p>REWARDS POINTS</p>
               <p class="points-accrued" id="pointsAccrued"></p>
-              <p>Rewards Points</p>
             </div>
             <div class="user-spend">
+              <p>TOTAL SPEND</p>
               <p class="money-spent" id="moneySpent"></p>
-              <p>Lifetime Spend</p>
             </div>
           </div>
         </header>
-        <h3>Upcoming Stays</h3>
+        <h3 class="upcoming-label">Upcoming Stays</h3>
         <div class="upcoming-stay-display" id="upcomingStayDisplay"></div>
-        <h3>Past Stays</h3>
+        <h3 class="past-label">Past Stays</h3>
         <div class="past-stay-display" id="pastStayDisplay"></div>
       </section>
       <section class="room-results-page hidden" id="resultsPage">
@@ -72,13 +72,13 @@
           </select>
         </form>
         <div class="results-display" id="resultsDisplay"></div>
-        <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
-          <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-              <header class="modal__header">
-                <h2 class="modal__title" id="modal-1-title">Booking Confimation</h2>
+        <div class="modal micromodal-slide" id="modalSlide" aria-hidden="true">
+          <div class="modal-overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+              <header class="modal-header">
+                <h2 class="modal-title" id="modal-1-title">Booking Confimation</h2>
               </header>
-              <main class="modal__content" id="modal-1-content">
+              <main class="modal-content" id="modal-1-content">
                 <p>Your room has been booked.</p>
                 <p>DATE:<span id="confDate"></span></p>
                 <p>ROOM:<span id="confRoom"></span></p>
@@ -86,8 +86,8 @@
                 <p>CONF#<span id="confCode"></span></p>
                 <p>Enjoy your stay!</p>
               </main>
-              <footer class="modal__footer">
-                <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window" id="modalClose">Close</button>
+              <footer class="modal-footer">
+                <button class="modal-btn button" data-micromodal-close aria-label="Close this dialog window" id="modalClose">Close</button>
               </footer>
             </div>
           </div>
