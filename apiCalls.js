@@ -13,7 +13,7 @@ function apiRequest(path, request, user, dateSelect, room) {
           return response.json()
       }
   })
-  .catch(error => console.log(`Could not fetch because: ${error}`));
+  .catch(error => alert(`Could not fetch because: ${error}`));
 };
 
 const getAllPromises = () => {

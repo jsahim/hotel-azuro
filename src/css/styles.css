@@ -38,6 +38,15 @@ h3 {
   margin: 0%;
 }
 
+.login-button {
+  padding: 3%;
+}
+
+.login-field {
+  font-size: 1rem;
+  padding: 3%;
+}
+
 .login-view .prime-view {
   height: 100vh;
 }
@@ -73,13 +82,21 @@ h3 {
   height: 25%;
   width: 25%;
   background-color: #e6e6e6;
-  padding: 10vmin;
+  padding: 20vmin 10vmin 20vmin 10vmin ;
   margin-bottom: 35%;
 }
 
 .login-form > div > img {
   width: 100%;
   margin-bottom: 10%;
+}
+
+.error-message {
+  color: red;
+  font-size: larger;
+  z-index: 4;
+  position: absolute;
+  top: 15vmin;
 }
 
 .icon{

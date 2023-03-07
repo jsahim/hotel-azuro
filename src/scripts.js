@@ -17,6 +17,8 @@ import './images/queen-icon.png';
 import './images/full-icon.png';
 
 
+//GLOBAL VARIABLES
+
 const loginView = document.getElementById("loginView") 
 const primeView = document.getElementById("primeView") 
 const userField = document.getElementById("userField") 
@@ -34,6 +36,8 @@ const resultsDisplay = document.getElementById("resultsDisplay")
 const body = document.querySelector('body');
 let bookingData, roomsData, customersData, hotelDatabase, currentUser
 
+
+//EVENT LISTENERS
 
 body.addEventListener('keydown', (e) => e.key === "Escape" && modal.classList.contains("is-open") ? goHome() : null)
 loginButton.addEventListener("click", verifyLogin)
@@ -54,7 +58,8 @@ resultsContainer.addEventListener('click', (e) => {
 })
 
 
-//functions
+//FUNCTIONS
+
 apiObject.getAllPromises()
 .then(data => {
   bookingData = data[0].bookings;
@@ -87,6 +92,11 @@ function toggleView(element, action){
 
 function verifyLogin(e){
   e.preventDefault()
+  if(!userField.value || !passwordField.value){
+    document.getElementById("errorMessage").innerText = "BOTH FIELDS REQUIRED"
+  } else {
+    document.getElementById("errorMessage").innerText = "INCORRECT USERNAME / PASSWORD"
+  }
   const foundUser = hotelDatabase.customers.find(cust => {
     return cust.username === userField.value && cust.password === passwordField.value
   })
@@ -191,11 +201,9 @@ function createNewBooking(buttonID, dateSelect, currentUser) {
 
 function createConfirmation(buttonID, dateSelect){
   let roomNum = +(buttonID.split("n")[1])
-  console.log(roomNum)
   let dateString = dateSelect.replaceAll("-", "/")
   let book = hotelDatabase.bookings.find(book => book.date === dateString && book.roomNumber === roomNum)
   let foundRoom = hotelDatabase.rooms.find(rm => rm.number === roomNum)
-  console.log(book, foundRoom)
   document.getElementById("confDate").innerText = ` ${dateString}`
   document.getElementById("confRoom").innerText = ` ${foundRoom.type}`
   document.getElementById("confBeds").innerText = ` ${foundRoom.bedSize}-${foundRoom.numBeds}`
