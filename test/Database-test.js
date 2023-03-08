@@ -13,7 +13,6 @@ describe('Hotel Database', () => {
 
   it('Should be an instance', () => {
     database = new Database(bookArray, roomArray, custArray);
-    console.log(database)
     expect(database).to.be.an.instanceOf(Database);
   });
 

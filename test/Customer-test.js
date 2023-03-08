@@ -47,7 +47,6 @@ describe('Customer', () => {
   it('should know how much money they/ve spent on rooms', () => {
     twoCustomer.allBookings = database.bookings.filter(booking => booking.userID === twoCustomer.id)
     let total = twoCustomer.getTotalSpent(database.rooms)
-    console.log(total);
     expect(total).to.equal('686.55');
   });
 

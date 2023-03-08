@@ -17,7 +17,6 @@ describe('Booking', () => {
   });
   
   it('should be an instance of a Room', () => {
-    console.log(singleRoom);
     expect(singleRoom).to.be.an.instanceOf(Room);
   });
   
