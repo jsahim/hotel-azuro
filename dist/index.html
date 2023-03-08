@@ -13,7 +13,7 @@
   <section class="login-view" id="loginView">
     <form class="login-form" method="post">
       <div class="login-window">
-        <p class="error-message" id="errorMessage"></p>
+        <p class="error-message" id="errorMessage" tabindex="0"></p>
         <img src="./images/hotel-logo.png" alt="hotel logo">
         <label id="userLabel" for="username">Username</label>
         <input type="text" class="login-field" id="userField" name="username" value="" required aria-labelledby="userLabel">
@@ -45,13 +45,13 @@
         <header class="home-header" tabindex="0">
           <h2 tabindex="0">Welcome back to the Hotel Azuro, <span id="homeNameInsert"></span>.</h2>
           <div class="user-spend-rewards">
-            <div class="user-rewards" id="userRewards" tabindex="0">
-              <p tabindex="0">REWARDS POINTS</p>
-              <p class="points-accrued" id="pointsAccrued" tabindex="0"></p>
+            <div class="user-rewards" id="userRewards">
+              <p>REWARDS POINTS</p>
+              <p class="points-accrued" id="pointsAccrued"></p>
             </div>
-            <div class="user-spend" tabindex="0">
-              <p tabindex="0">TOTAL SPEND</p>
-              <p class="money-spent" id="moneySpent" tabindex="0"></p>
+            <div class="user-spend">
+              <p>TOTAL SPEND</p>
+              <p class="money-spent" id="moneySpent"></p>
             </div>
           </div>
         </header>
