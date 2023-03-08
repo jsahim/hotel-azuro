@@ -51,9 +51,6 @@ resultsContainer.addEventListener('click', (e) => {
   const isButton = e.target.nodeName === 'BUTTON';
   if(isButton){
     createNewBooking(e.target.id, calendar.value, currentUser)
-    setTimeout(() => {
-      createConfirmation(e.target.id, calendar.value)
-    }, 500);
   } 
 })
 
@@ -191,12 +188,19 @@ function displayRooms(matchRooms){
 function createNewBooking(buttonID, dateSelect, currentUser) {
   let roomNum = +(buttonID.split("n")[1])
   let dateFix = dateSelect.replaceAll("-","/")
-  apiObject.apiRequest("bookings","POST", currentUser.id, dateFix, roomNum);
-  apiObject.apiRequest("bookings").then(bookData => {
-    hotelDatabase.bookings = bookData.bookings.map(bookObj => new Booking(bookObj))
-    return hotelDatabase.bookings 
-  });
+  apiObject.apiRequest("bookings","POST", currentUser.id, dateFix, roomNum)
+  .then(data => {
+    const message = data.message.split(" ")
+    if(message.includes("successfully")){
+      apiObject.apiRequest("bookings")
+      .then(bookData => {
+        hotelDatabase.bookings = bookData.bookings.map(bookObj => new Booking(bookObj))
+        createConfirmation(buttonID, calendar.value)
+      })
+    }
+  })
 }
+
 
 function createConfirmation(buttonID, dateSelect){
   let roomNum = +(buttonID.split("n")[1])
