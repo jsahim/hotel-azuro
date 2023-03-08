@@ -8,7 +8,7 @@ function apiRequest(path, request, user, dateSelect, room) {
   })
   .then(response => {
       if(!response.ok) {
-          throw new Error("There was an error. Status Code: ", response.status);
+          throw new Error(`There was an error. Status Code: ${response.status}`);
       } else {
           return response.json()
       }
